@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mewThread.voteSystem.dao.RoundMapper">
+  <resultMap id="BaseResultMap" type="mewThread.voteSystem.model.Round">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="round_order" jdbcType="INTEGER" property="roundOrder" />
+    <result column="session_id" jdbcType="INTEGER" property="sessionId" />
+    <result column="round_stste" jdbcType="INTEGER" property="roundStste" />
+    <result column="vote_type" jdbcType="CHAR" property="voteType" />
+  </resultMap>
+</mapper>

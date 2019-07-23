@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!--开启驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--jdbc出来NULL-->
+        <!--<setting name="jdbcTTYpeForNull" value="NULL"></setting>-->
+
+        <!--开启懒加载策略：
+        只有当需要查询的时候数据的时候去查询，减少某些不适用但又执行sql的次数提高效率-->
+        <setting name="lazyLoadingEnabled" value="true"></setting>
+        <!--关闭懒加载，因为某些版本默认值为true，所以手动关闭-->
+        <setting name="aggressiveLazyLoading" value="false"></setting>
+
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"></setting>
+    </settings>
+
+    <!--分页查询：该配置一般都在环节2配置的前面-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!--配置多个数据库-->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MySQL" value="mysql"></property>
+        <property name="Qracle" value="oracle"></property>
+    </databaseIdProvider>
+</configuration>

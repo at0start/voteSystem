@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mewThread.voteSystem.dao.RoundProjectMapper">
+  <resultMap id="BaseResultMap" type="mewThread.voteSystem.model.RoundProject">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="session_id" jdbcType="INTEGER" property="sessionId" />
+    <result column="round_order" jdbcType="INTEGER" property="roundOrder" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+  </resultMap>
+</mapper>

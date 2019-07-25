@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="newthread.votesystem.mappers.ResultMapper" >
+  <resultMap id="BaseResultMap" type="newthread.votesystem.bean.Result" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="result_id" property="resultId" jdbcType="INTEGER" />
+    <id column="out_vote" property="outVote" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="session_name" property="sessionName" jdbcType="VARCHAR" />
+    <result column="round_id" property="roundId" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="project_order" property="projectOrder" jdbcType="INTEGER" />
+    <result column="pass_vote" property="passVote" jdbcType="INTEGER" />
+    <result column="abstention_vote" property="abstentionVote" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+  </resultMap>
+</mapper>

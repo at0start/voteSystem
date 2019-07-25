@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="newthread.votesystem.mappers.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="newthread.votesystem.bean.Project" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="project_order" property="projectOrder" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="project_type" property="projectType" jdbcType="VARCHAR" />
+    <result column="college_name" property="collegeName" jdbcType="INTEGER" />
+    <result column="project_man" property="projectMan" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="project_file" property="projectFile" jdbcType="VARCHAR" />
+    <result column="project_info" property="projectInfo" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

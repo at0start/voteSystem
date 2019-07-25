@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="newthread.votesystem.mappers.RoundMapper" >
+  <resultMap id="BaseResultMap" type="newthread.votesystem.bean.Round" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="round_id" property="roundId" jdbcType="INTEGER" />
+    <result column="round_order" property="roundOrder" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="round_state" property="roundState" jdbcType="INTEGER" />
+    <result column="vote_type" property="voteType" jdbcType="CHAR" />
+    <result column="up_limit" property="upLimit" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>

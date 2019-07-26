@@ -21,24 +21,30 @@ public interface RoundService {
     Round queryRound(Integer roundId);
 
     //修改轮次信息
-    void updateRound(Round round);
+    boolean updateRound(Round round);
 
     //删除轮次
-    void deleteRound(Integer roundId,Integer sessionId);
+    boolean deleteRound(Integer roundId,Integer sessionId);
 
     //批量添加项目？？？
     //1. 查询该场次所有项目
     //2. 添加到该轮次下
-    void addProject(List<Project> projects,Integer sessionId,Integer roundId);
+    Integer addProject(List<Project> projects,Integer sessionId,Integer roundId);
 
-    //批量取消项目
-    void deleteBathProject(List<Project> projects);
+//    //批量取消项目
+//    void deleteBathProject(List<Project> projects);
+
+    //查询轮次状态
+    Integer queryRoundState(Integer roundId);
 
     //开始轮次，修改场次、轮次状态???
-    Integer updateRoundState(Integer sessionId,Integer roundId);
+    Integer startRound(Integer sessionId,Integer roundId);
 
-    //查看评委结果
-    List<String> queryResult(Integer sessionId, Integer roundOrder);
+    //结束轮次
+    Integer endRound(Integer sessionId,Integer roundId);
+
+//    //查看评委结果
+//    List<String> queryResult(Integer sessionId, Integer roundOrder);
 
     //查看评审结果
 

@@ -18,16 +18,16 @@ public interface ProjectService {
     List<Project> queryAllProjectsByRoundId(Integer sessionId,Integer roundId);
 
     //添加项目（单个）
-    void addProject(Project project);
+    boolean addProject(Project project);
 
     //根据主键查询项目(主键如何获取（自己）)
     Project queryProjectByProjectId(Integer projectId);
 
     //删除项目（根据主键）
-    Integer deleteByProjectId(Integer projectId);
+    boolean deleteByProjectId(Integer projectId);
 
     //修改项目（先查再改）
-    void updateProject(Project project);
+    boolean updateProject(Project project);
 
     //上传项目文件
     void uploadProjectFile(File file);

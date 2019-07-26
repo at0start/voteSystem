@@ -27,29 +27,5 @@ public class AdminServiceImpl implements AdminService {
         }else return false;
     }
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
-    @Override
-    public List<String> queryAll(String adminId) {
-        return null;
-    }
-
-    @Override
-    public List<Project> queryProject(Integer sessionId, Integer roundOrder) {
-        return null;
-    }
-
-    @Override
-    public boolean judge(String userId, Integer sessionId, Integer roundOrder) {
-        return false;
-    }
-
-    @Override
-    public boolean addVoteResult(List<Result> results) {
-        return false;
-    }
 
 }

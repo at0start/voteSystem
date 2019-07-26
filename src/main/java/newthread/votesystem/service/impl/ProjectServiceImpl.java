@@ -12,9 +12,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 项目操作类
+ */
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectService {
 
+    // 项目 dao
     @Autowired
     ProjectMapper projectMapper;
 
@@ -62,15 +66,19 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 手动添加项目
+     *
      * @param project
      */
     @Override
-    public void addProject(Project project) {
-        projectMapper.insert(project);
+    public boolean addProject(Project project) {
+        if (projectMapper.insert(project) == 1) {
+            return true;
+        } else return false;
     }
 
     /**
      * 根据主键查询项目
+     *
      * @param projectId
      * @return
      */
@@ -81,24 +89,31 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 删除项目根据项目主键
+     *
      * @param projectId
      */
     @Override
-    public Integer deleteByProjectId(Integer projectId) {
-        return projectMapper.deleteByPrimaryKey(projectId);
+    public boolean deleteByProjectId(Integer projectId) {
+        if (projectMapper.deleteByPrimaryKey(projectId) == 1) {
+            return true;
+        } else return false;
     }
 
     /**
      * 更新项目
+     *
      * @param project
      */
     @Override
-    public void updateProject(Project project) {
-        projectMapper.updateByPrimaryKey(project);
+    public boolean updateProject(Project project) {
+        if(projectMapper.updateByPrimaryKey(project) == 1){
+            return true;
+        }else return false;
     }
 
     /**
      * 上传项目文件
+     *
      * @param file
      */
     @Override
@@ -108,6 +123,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 上传项目（批量添加项目）
+     *
      * @param file
      */
     @Override

@@ -58,14 +58,14 @@
             <!--&lt;!&ndash; 配置主键生成策略 &ndash;&gt;-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
         <!--</table>-->
-        <!--<table tableName="project" domainObjectName="Project">-->
-            <!--&lt;!&ndash; 配置主键生成策略 &ndash;&gt;-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
-        <!--</table>-->
-        <table tableName="result" domainObjectName="Result">
+        <table tableName="project" domainObjectName="Project">
             <!-- 配置主键生成策略 -->
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
+        <!--<table tableName="result" domainObjectName="Result">-->
+            <!--&lt;!&ndash; 配置主键生成策略 &ndash;&gt;-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
         <!--&lt;!&ndash;<table tableName="ball" domainObjectName="Ball">-->
             <!--&lt;!&ndash; 配置主键生成策略 &ndash;&gt;-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->

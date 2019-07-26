@@ -38,7 +38,7 @@ public class Project {
      * 项目部门（评审端不显示）
      */
     @Column(name = "college_name")
-    private Integer collegeName;
+    private String collegeName;
 
     /**
      * 项目负责人（评审端不显示）
@@ -158,7 +158,7 @@ public class Project {
      *
      * @return college_name - 项目部门（评审端不显示）
      */
-    public Integer getCollegeName() {
+    public String getCollegeName() {
         return collegeName;
     }
 
@@ -167,7 +167,7 @@ public class Project {
      *
      * @param collegeName 项目部门（评审端不显示）
      */
-    public void setCollegeName(Integer collegeName) {
+    public void setCollegeName(String collegeName) {
         this.collegeName = collegeName;
     }
 

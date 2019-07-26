@@ -10,7 +10,7 @@
     <result column="project_order" property="projectOrder" jdbcType="INTEGER" />
     <result column="project_name" property="projectName" jdbcType="VARCHAR" />
     <result column="project_type" property="projectType" jdbcType="VARCHAR" />
-    <result column="college_name" property="collegeName" jdbcType="INTEGER" />
+    <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
     <result column="project_man" property="projectMan" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="DOUBLE" />
     <result column="project_file" property="projectFile" jdbcType="VARCHAR" />

@@ -25,7 +25,7 @@ public interface UserService {
 
     //开始投票
     //1. 查询该场次该轮次下的项目
-    List<Project> queryProject(Integer sessionId, Integer roundOrder);
+//    List<Project> queryProject(Integer sessionId, Integer roundOrder);
 
     //2. 查询场次信息（评选规则、投票制）
 

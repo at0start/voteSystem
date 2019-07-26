@@ -1,9 +1,7 @@
 package newthread.votesystem.service.impl;
 
 import newthread.votesystem.bean.*;
-import newthread.votesystem.mappers.ResultMapper;
-import newthread.votesystem.mappers.SessionUserMapper;
-import newthread.votesystem.mappers.UserMapper;
+import newthread.votesystem.mappers.*;
 import newthread.votesystem.service.RoundService;
 import newthread.votesystem.service.SessionService;
 import newthread.votesystem.service.UserService;
@@ -13,21 +11,25 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 评委操作类
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+    //用户 dao
     @Autowired
     UserMapper userMapper;
-
+    // 用户权限 dao
     @Autowired
     SessionUserMapper sessionUserMapper;
-
+    // 场次 dao
     @Autowired
-    SessionService sessionService;
-
+    SessionMapper sessionMapper;
+    // 轮次 dao
     @Autowired
-    RoundService roundService;
-
+    RoundMapper roundMapper;
+    // 结果 dao
     @Autowired
     ResultMapper resultMapper;
 
@@ -63,9 +65,11 @@ public class UserServiceImpl implements UserService {
             //2.1. 获取 sessionId
             Integer sessionId = sessionUsers.get(i).getSessionId();
             //2.2. 获取 session
-            Session session = sessionService.getSessionBySessionId(sessionId);
+            Session session = sessionMapper.selectByPrimaryKey(sessionId);
             //2.3. 获取 round
-            List<Round> rounds = roundService.queryAllRoundBySessionId(sessionId);
+            Round round1 = new Round();
+            round1.setSessionId(sessionId);
+            List<Round> rounds = roundMapper.select(round1);
             for (int j = 0; j < rounds.size(); j++) {
                 Round round = rounds.get(i);
                 //3. 封装 UserVoteInfo;
@@ -85,12 +89,12 @@ public class UserServiceImpl implements UserService {
      * @param roundId
      * @return
      */
-    @Override
-    public List<Project> queryProject(Integer sessionId, Integer roundId) {
-        //获取 session 信息
-        Session session = sessionService.getSessionBySessionId(sessionId);
-        return null;
-    }
+//    @Override
+//    public List<Project> queryProject(Integer sessionId, Integer roundId) {
+//        //获取 session 信息
+//        Session session = sessionService.getSessionBySessionId(sessionId);
+//        return null;
+//    }
 
     /**
      * 判断用户是否有（投票）权限，查询 session_user 表

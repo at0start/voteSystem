@@ -32,7 +32,6 @@ public class RoundServiceImplTest {
 //        roundService.addProject(projects,3,17);
 
         //updateRoundState
-        roundService.updateRoundState(3,17);
 
     }
 

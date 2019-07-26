@@ -6,6 +6,7 @@ import newthread.votesystem.bean.RoundProject;
 import newthread.votesystem.bean.Session;
 import newthread.votesystem.mappers.RoundMapper;
 import newthread.votesystem.mappers.RoundProjectMapper;
+import newthread.votesystem.mappers.SessionMapper;
 import newthread.votesystem.service.RoundService;
 import newthread.votesystem.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 讨论round表是否需要主键
+ * 讨论round表是否需要主键 √
  */
 @Service("roundService")
 public class RoundServiceImpl implements RoundService{
@@ -25,7 +26,7 @@ public class RoundServiceImpl implements RoundService{
 
     //场次 dao 实现
     @Autowired
-    SessionService sessionService;
+    SessionMapper sessionMapper;
 
     //项目_场次 dao
     @Autowired
@@ -52,7 +53,7 @@ public class RoundServiceImpl implements RoundService{
     public Integer addRound(Round round,Integer sessionId) {
         //1. 根据场次 id 查询该场次的评选方式
         //1.1. 查询该场次信息
-        Session session = sessionService.getSessionBySessionId(sessionId);
+        Session session = sessionMapper.selectByPrimaryKey(sessionId);
         round.setVoteType(session.getVoteType());
         round.setSessionId(sessionId);
         roundMapper.insert(round);
@@ -71,11 +72,15 @@ public class RoundServiceImpl implements RoundService{
 
     /**
      * 更新轮次
+     * 返回更新信息
      * @param round
      */
     @Override
-    public void updateRound(Round round) {
-        roundMapper.updateByPrimaryKey(round);
+    public boolean updateRound(Round round) {
+        if(roundMapper.updateByPrimaryKey(round) == 1){
+            return true;
+        }else return false;
+
     }
 
     /**
@@ -84,20 +89,23 @@ public class RoundServiceImpl implements RoundService{
      * @param sessionId
      */
     @Override
-    public void deleteRound(Integer roundId, Integer sessionId) {
+    public boolean deleteRound(Integer roundId, Integer sessionId) {
         Round round = new Round();
         //添加场次以及轮次 id 信息
         round.setSessionId(sessionId);
         round.setRoundId(roundId);
-        roundMapper.delete(round);
+        if (roundMapper.delete(round) == 1){
+            return true;
+        }else return false;
     }
 
     /**
      * 批量更新项目（先删除后插入）
+     * 可能需要返回值
      * @param projects
      */
     @Override
-    public void addProject(List<Project> projects,Integer sessionId,Integer roundId) {
+    public Integer addProject(List<Project> projects,Integer sessionId,Integer roundId) {
         RoundProject roundProject = new RoundProject();
         //1. 设置场次及轮次 id进行删除
         roundProject.setSessionId(sessionId);
@@ -110,36 +118,88 @@ public class RoundServiceImpl implements RoundService{
             // 插入
             roundProjectMapper.insert(roundProject);
         }
+        return 1;
     }
 
-
-
+    /**
+     * 查询轮次状态
+     * @param roundId
+     * @return
+     */
     @Override
-    public void deleteBathProject(List<Project> projects) {
-
+    public Integer queryRoundState(Integer roundId) {
+        //封装查询条件
+        Round round = roundMapper.selectByPrimaryKey(roundId);
+        return round.getRoundState();
     }
 
     /**
      * 开启轮次（修改场次轮次状态）？？
+     * 返回轮次状态信息：1 开始
      * @return
      */
     @Override
-    public Integer updateRoundState(Integer sessionId,Integer roundId) {
+    public Integer startRound(Integer sessionId,Integer roundId) {
         //1. 获取该轮次
         Round round = roundMapper.selectByPrimaryKey(roundId);
         //2. 修改轮次状态：0 -> 1
         round.setRoundState(1);
-        //3. 更新轮次
+        //3. 开启轮次
         roundMapper.updateByPrimaryKey(round);
-        //4. 更新场次
-        sessionService.updateSessionState(sessionId);
+        //4. 开启场次
+        //获取场次信息
+        Session session = sessionMapper.selectByPrimaryKey(sessionId);
+        //修改场次状态 1 -> 2
+        session.setSessionState(2);
+        sessionMapper.updateByPrimaryKey(session);
         //4. 返回场次轮次状态
         round = roundMapper.selectByPrimaryKey(roundId);
         return round.getRoundState();
     }
 
+    /**
+     * 结束轮次（如果该轮次是最后的轮次，就结束整个场次）
+     * 返回轮次状态信息：0 结束
+     * @param sessionId
+     * @param roundId
+     * @return
+     */
     @Override
-    public List<String> queryResult(Integer sessionId, Integer roundOrder) {
-        return null;
+    public Integer endRound(Integer sessionId, Integer roundId) {
+        //1. 获取该场次的所有轮次
+        Round round = new Round();
+        round.setSessionId(sessionId);
+        List<Round> rounds = roundMapper.select(round);
+        //2. 获取所有轮次的状态信息
+        int num = 0; // 记录开启的轮次个数
+        for(int i= 0;i < rounds.size();i++){
+            if(rounds.get(i).getRoundState() == 1)
+                num++;
+        }
+        //判断是否是最后一个轮次(如果是，则同时结束场次)
+        if(num == 1){
+            //获取场次
+            Session session = sessionMapper.selectByPrimaryKey(sessionId);
+            //结束场次 3:表示场次结束
+            session.setSessionState(3);
+            //更新场次信息
+            sessionMapper.updateByPrimaryKey(session);
+        }
+        // 3. 结束轮次
+        // 查询要结束的轮次
+        round = roundMapper.selectByPrimaryKey(roundId);
+        // 0 表示结束轮次
+        round.setRoundState(0);
+        // 结束轮次
+        roundMapper.updateByPrimaryKey(round);
+        return round.getRoundState();
     }
+
+
+//    @Override
+//    public List<String> queryResult(Integer sessionId, Integer roundOrder) {
+//        return null;
+//    }
+
+
 }

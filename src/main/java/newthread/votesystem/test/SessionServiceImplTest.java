@@ -13,16 +13,16 @@ public class SessionServiceImplTest {
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
         SessionService sessionService= context.getBean(SessionService.class);
-        //测试 addSession() 方法
-        Session session = new Session();
-        session.setSessionDate(new Date());
-        session.setSessionName("第一场");
-        session.setVoteType("v");
-        session.setSessionState(0);
-        session.setUserNumber(10);
-        System.out.println(sessionService.addSession(session));
-        System.out.println(session.getSessionId());
-//
+//        //测试 addSession() 方法
+//        Session session = new Session();
+//        session.setSessionDate(new Date());
+//        session.setSessionName("第一场");
+//        session.setVoteType("v");
+//        session.setSessionState(0);
+//        session.setUserNumber(10);
+//        System.out.println(sessionService.addSession(session));
+//        System.out.println(session.getSessionId());
+////
 //        //测试getSessionBySessionId() 方法
 ////        System.out.println(sessionService.getSessionBySessionId(2));
 //
@@ -37,8 +37,8 @@ public class SessionServiceImplTest {
 ////        session.setUserNumber(11);
 ////        sessionService.updateSession(session);
 //
-//        //deleteBySessionId():删除场次信息
-////        sessionService.deleteBySessionId(1);
+        //deleteBySessionId():删除场次信息
+        System.out.println(sessionService.deleteBySessionId(1));
 //
 //        //updateSessionState():修改场次状态
 //        sessionService.updateSessionState(2);

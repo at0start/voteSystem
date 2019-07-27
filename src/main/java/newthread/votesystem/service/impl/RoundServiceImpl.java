@@ -102,24 +102,39 @@ public class RoundServiceImpl implements RoundService{
     /**
      * 批量更新项目（先删除后插入）
      * 可能需要返回值
-     * @param projects
+     * @param roundProjects
      */
     @Override
-    public Integer addProject(List<Project> projects,Integer sessionId,Integer roundId) {
+    public boolean addProject(List<RoundProject> roundProjects){
+        int insert = 1;
         RoundProject roundProject = new RoundProject();
         //1. 设置场次及轮次 id进行删除
-        roundProject.setSessionId(sessionId);
-        roundProject.setRoundId(roundId);
+        roundProject.setSessionId(roundProjects.get(0).getSessionId());
+        roundProject.setRoundId(roundProjects.get(0).getRoundId());
         roundProjectMapper.delete(roundProject);
-        for(int i = 0;i < projects.size();i++){
+        for(int i = 0;i < roundProjects.size();i++){
             //2. 进行插入
-            //设置 projectid
-            roundProject.setProjectId(projects.get(i).getProjectId());
-            // 插入
-            roundProjectMapper.insert(roundProject);
+            insert = roundProjectMapper.insert(roundProjects.get(i));
+            if(insert == 0) break;
         }
-        return 1;
+        if(insert == 0) return false;
+        else return true;
     }
+//    public Integer addProject(List<Project> projects,Integer sessionId,Integer roundId) {
+//        RoundProject roundProject = new RoundProject();
+//        //1. 设置场次及轮次 id进行删除
+//        roundProject.setSessionId(sessionId);
+//        roundProject.setRoundId(roundId);
+//        roundProjectMapper.delete(roundProject);
+//        for(int i = 0;i < projects.size();i++){
+//            //2. 进行插入
+//            //设置 projectid
+//            roundProject.setProjectId(projects.get(i).getProjectId());
+//            // 插入
+//            roundProjectMapper.insert(roundProject);
+//        }
+//        return 1;
+//    }
 
     /**
      * 查询轮次状态
@@ -158,7 +173,7 @@ public class RoundServiceImpl implements RoundService{
     }
 
     /**
-     * 结束轮次（如果该轮次是最后的轮次，就结束整个场次）
+     * 结束轮次
      * 返回轮次状态信息：0 结束
      * @param sessionId
      * @param roundId
@@ -166,33 +181,41 @@ public class RoundServiceImpl implements RoundService{
      */
     @Override
     public Integer endRound(Integer sessionId, Integer roundId) {
-        //1. 获取该场次的所有轮次
-        Round round = new Round();
-        round.setSessionId(sessionId);
-        List<Round> rounds = roundMapper.select(round);
-        //2. 获取所有轮次的状态信息
-        int num = 0; // 记录开启的轮次个数
-        for(int i= 0;i < rounds.size();i++){
-            if(rounds.get(i).getRoundState() == 1)
-                num++;
-        }
-        //判断是否是最后一个轮次(如果是，则同时结束场次)
-        if(num == 1){
-            //获取场次
-            Session session = sessionMapper.selectByPrimaryKey(sessionId);
-            //结束场次 3:表示场次结束
-            session.setSessionState(3);
-            //更新场次信息
-            sessionMapper.updateByPrimaryKey(session);
-        }
-        // 3. 结束轮次
-        // 查询要结束的轮次
-        round = roundMapper.selectByPrimaryKey(roundId);
-        // 0 表示结束轮次
+        // 获取轮次信息
+        Round round = roundMapper.selectByPrimaryKey(roundId);
+        // 结束轮次，1 -> 0
         round.setRoundState(0);
-        // 结束轮次
+        // 更新轮次
         roundMapper.updateByPrimaryKey(round);
         return round.getRoundState();
+
+//        //1. 获取该场次的所有轮次
+//        Round round = new Round();
+//        round.setSessionId(sessionId);
+//        List<Round> rounds = roundMapper.select(round);
+//        //2. 获取所有轮次的状态信息
+//        int num = 0; // 记录开启的轮次个数
+//        for(int i= 0;i < rounds.size();i++){
+//            if(rounds.get(i).getRoundState() == 1)
+//                num++;
+//        }
+//        //判断是否是最后一个轮次(如果是，则同时结束场次)
+//        if(num == 1){
+//            //获取场次
+//            Session session = sessionMapper.selectByPrimaryKey(sessionId);
+//            //结束场次 3:表示场次结束
+//            session.setSessionState(3);
+//            //更新场次信息
+//            sessionMapper.updateByPrimaryKey(session);
+//        }
+//        // 3. 结束轮次
+//        // 查询要结束的轮次
+//        round = roundMapper.selectByPrimaryKey(roundId);
+//        // 0 表示结束轮次
+//        round.setRoundState(0);
+//        // 结束轮次
+//        roundMapper.updateByPrimaryKey(round);
+//        return round.getRoundState();
     }
 
 

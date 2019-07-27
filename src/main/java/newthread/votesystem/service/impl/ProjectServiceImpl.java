@@ -77,7 +77,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     /**
-     * 根据主键查询项目
+     * 根据项目主键查询项目
      *
      * @param projectId
      * @return
@@ -100,7 +100,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     /**
-     * 更新项目
+     * 更新项目(需要填写项目主键，场次主键信息)
      *
      * @param project
      */

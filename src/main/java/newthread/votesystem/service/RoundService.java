@@ -3,6 +3,7 @@ package newthread.votesystem.service;
 
 import newthread.votesystem.bean.Project;
 import newthread.votesystem.bean.Round;
+import newthread.votesystem.bean.RoundProject;
 
 import java.util.List;
 
@@ -29,7 +30,8 @@ public interface RoundService {
     //批量添加项目？？？
     //1. 查询该场次所有项目
     //2. 添加到该轮次下
-    Integer addProject(List<Project> projects,Integer sessionId,Integer roundId);
+//    Integer addProject(List<Project> projects,Integer sessionId,Integer roundId);
+    boolean addProject(List<RoundProject> projects);
 
 //    //批量取消项目
 //    void deleteBathProject(List<Project> projects);

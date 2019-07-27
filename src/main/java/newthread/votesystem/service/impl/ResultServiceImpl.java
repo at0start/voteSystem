@@ -113,7 +113,7 @@ public class ResultServiceImpl implements ResultService {
         Integer userNumber = session.getUserNumber();
         String voteType = session.getVoteType();
         //投票制
-        if (voteType.equals("V")) {
+        if (voteType.equals("v")) {
             //根据场次，轮次，项目id计算票数
             //获取 i 各项目
             for (int i = 0; i < roundProjects.size(); i++) {
@@ -139,6 +139,8 @@ public class ResultServiceImpl implements ResultService {
                 //封装结果信息
                 ResultInf resultInf = new ResultInf(project.getProjectId(), null, project.getProjectName(), pass, out, abstention, 0.0);
                 resultInfs.add(resultInf);
+                //清零
+                pass = 0;out = 0;abstention = 0;
             }
             return resultInfs;
         } else {
@@ -167,9 +169,9 @@ public class ResultServiceImpl implements ResultService {
                 //封装结果信息
                 ResultInf resultInf = new ResultInf(project.getProjectId(), null, project.getProjectName(), 0, 0, 0, scoreFinal);
                 resultInfs.add(resultInf);
-                return resultInfs;
+                scoreFinal = 0;
             }
+            return resultInfs;
         }
-        return null;
     }
 }

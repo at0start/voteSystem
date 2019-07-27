@@ -76,7 +76,7 @@ public class SessionServiceImpl implements SessionService {
         sessionUser.setSessionId(sessionId);
         sessionUserMapper.delete(sessionUser);
         //3. 访问权限表,添加权限信息（session_user）
-        for (int i = 0; i < userNumber; i++) {
+        for (int i = 1; i <= userNumber; i++) {
             sessionUserMapper.insert(new SessionUser(sessionId, "j" + i));
         }
     }

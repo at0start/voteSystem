@@ -1,11 +1,12 @@
 package newthread.votesystem.controller;
 
-import newthread.votesystem.bean.Message;
 import newthread.votesystem.bean.Project;
 import newthread.votesystem.bean.Session;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import newthread.votesystem.service.ProjectService;
+import newthread.votesystem.service.SessionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,16 +14,23 @@ import java.util.List;
  * @author 一个糟老头子
  * @createDate 2019/7/17-15:30
  */
+@Controller
 public class SessionController {
 
+    @Autowired
+    SessionService sessionService;
 
-    //1.1.评审系统管理界面，检索的所有场次，前端会根据场次状态进行显示
+    @Autowired
+    ProjectService projectService;
+
+    /**
+     * 评审系统管理界面，检索的所有场次，前端会根据场次状态进行显示
+     * @return
+     */
     @RequestMapping("/getSessions")
     @ResponseBody
     public List<Session> getSessionStates() {
-        List<Session> sessions = null;
-
-        return sessions;
+        return sessionService.getAllSession();
     }
 
     /**
@@ -33,86 +41,130 @@ public class SessionController {
     @RequestMapping("/addSession")
     @ResponseBody
     public Session addSession(@RequestBody Session session) {
+        //将场次状态设为1
+        session.setSessionState(1);
+        //添加session
+        Integer sessionId = sessionService.addSession(session);
+        //将sessionId加入到返回的session对象
+        Session session1 = sessionService.getSessionBySessionId(sessionId);
         //根据传入的评委数目n,默认赋予前n个评委投票权限
-        return session;
+        sessionService.giveAuthority(session1.getSessionId());
+        return session1;
     }
 
-    //1.3.1.修改场次信息，先查询，再修改
-    @RequestMapping("getSessionByID")
+    /**
+     *  修改场次信息，先查询，再修改
+     * @param session(sessionId)
+     * @return
+     */
+    @RequestMapping("/getSessionByID")
     @ResponseBody
-    public Session getSessionByID(@RequestBody Integer sessionId){
-        Session session = null;
-        return  session;
+    public Session getSessionByID(@RequestBody Session session){
+        return  sessionService.getSessionBySessionId(session.getSessionId());
     }
-    //1.3.2 修改
-    @RequestMapping("/updateSession")
+
+    /**
+     *   修改场次信息
+     * @param session
+     * @return
+     */
+    @RequestMapping("updateSession")
     @ResponseBody
     public Session updateSession(@RequestBody Session session) {
+        System.out.println(session);
+        //修改场次信息
+        boolean b = sessionService.updateSession(session);
+        System.out.println(session);
+        //如果评委数目改变时，修改评委权限（增加、减少评委）
+        sessionService.giveAuthority(session.getSessionId());
+            //返回修改后的场次信息
+        if (b){
+            return sessionService.getSessionBySessionId(session.getSessionId());
 
-        return session;
+        }else return session;
     }
 
-    //1.4删除场次
+
+    /**
+     *  删除场次
+     * @param session（sessionId）
+     * @return
+     */
     @RequestMapping("/deleteSession")
     @ResponseBody
-    public Message deleteSession(@RequestBody Integer sessionId) {
+    public boolean deleteSession(@RequestBody Session session) {
 
-        //如果评委数目改变时，修改评委权限（增加、减少评委）
-
-        //返回一个message对象，是否删除成功（字符串）
-        return null;
+        return sessionService.deleteBySessionId(session.getSessionId());
     }
 
-    //1.5.1添加项目(前端将excel文件转换成project对象后传到controller)
-    //如果后台
-    @RequestMapping("/addProjects")
-    @ResponseBody
-    public List<Project> addProjects(@RequestBody List<Project> list) {
-
-        //添加后做一次查询,问一下李返回所有项目还是刚刚添加的项目
-        //或者批量插入重新获取本地项目，单次添加更新本地项目
-
-        return null;
-    }
-
-
-    //导入项目（Excel）
-    public List<Project> addProjects(@RequestBody String FilePath,Integer sessionId){
-        return null ;
-    }
-
-    //手动添加
-
-    public List<Project> addProject(@RequestBody Project project){
-
-        return  null;
-    }
-    //1.5.2修改项目信息
-    @RequestMapping("/updateProject")
-    @ResponseBody
-    public Project updateProject(@RequestBody Project project) {
-
-        return project;
-    }
-
-    //1.5.3查询当前场次的项目
-    private List<Project> getProjects(@RequestBody Integer sessionId){
-        List<Project> projects = null;
-        return projects;
-    }
+//    //导入项目（Excel）
+//    @RequestMapping("/addProjectsToSession")
+//    @ResponseBody
+//    public List<Project> addProjectsToSession(@RequestBody String FilePath,Integer sessionId){
+//        return null ;
+//    }
 
     //1.5.6上传项目文档
-//    @RequestMapping("/upLoad")
+//    @RequestMapping("/sessionUpLode")
 //    @ResponseBody
-//    public Message upLoad(RequestBody File file){
+//    public Message sessionUpLode(RequestBody File file){
 //
 //        return file;
 //    }
 
-    //结束本场此
-    public Message endSession(@RequestBody Integer sessinoId){
 
-        Message message = null;
-        return message;
+    /**
+     *  手动添加
+     * @param project
+     * @return
+     */
+    @RequestMapping(value = "/addProjectToSession",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Project> addProjectToSession(@RequestBody Project project){
+        projectService.addProject(project);
+        return  projectService.queryAllProject(project.getSessionId());
+    }
+
+
+
+
+
+    /**
+     * 查询当前场次的所有项目
+     * @param session (sessionId)
+     * @return
+     */
+    @RequestMapping("/getSessionProjects")
+    @ResponseBody
+    private List<Project> getSessionProjects(@RequestBody Session session){
+        return projectService.queryAllProject(session.getSessionId());
+    }
+
+    /**
+     * 修改项目信息: 修改项目是在显示项目信息的
+     *             基础上操作的所以不需要查询
+     * @param project
+     * @return
+     */
+    @RequestMapping(value = "/updateSessionProject",method = RequestMethod.POST)
+    @ResponseBody
+    public Project updateSessionProject(@RequestBody Project project) {
+
+        //利用主键删除，所一必须传入projectId
+        projectService.updateProject(project);
+        return projectService.queryProjectByProjectId(project.getProjectId());
+    }
+
+    /**
+     * 结束本场此
+     * @param session
+     * @return
+     */
+    @RequestMapping("/endSession")
+    @ResponseBody
+    public boolean endSession(@RequestBody Session session){
+        Session session1 = sessionService.getSessionBySessionId(session.getSessionId());
+        session1.setSessionState(3);
+        return sessionService.updateSession(session1);
     }
 }

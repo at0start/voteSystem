@@ -242,4 +242,20 @@ public class Project {
     public void setProjectInfo(String projectInfo) {
         this.projectInfo = projectInfo;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectId=" + projectId +
+                ", sessionId=" + sessionId +
+                ", projectOrder=" + projectOrder +
+                ", projectName='" + projectName + '\'' +
+                ", projectType='" + projectType + '\'' +
+                ", collegeName='" + collegeName + '\'' +
+                ", projectMan='" + projectMan + '\'' +
+                ", money=" + money +
+                ", projectFile='" + projectFile + '\'' +
+                ", projectInfo='" + projectInfo + '\'' +
+                '}';
+    }
 }

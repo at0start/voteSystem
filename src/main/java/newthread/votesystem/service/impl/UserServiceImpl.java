@@ -73,9 +73,9 @@ public class UserServiceImpl implements UserService {
             for (int j = 0; j < rounds.size(); j++) {
                 Round round = rounds.get(i);
                 //3. 封装 UserVoteInfo;
-                UserVoteInfo userVoteInfo = new UserVoteInfo(null,
+                UserVoteInfo userVoteInfo = new UserVoteInfo(session.getSessionId(),
                         session.getSessionName(), session.getSessionDate(), round.getRoundOrder(),
-                        session.getSessionState(), round.getRoundState());
+                        session.getSessionState(), round.getRoundState(),session.getVoteType());
                 userVoteInfos.add(userVoteInfo);
             }
         }
@@ -116,7 +116,6 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 判断用户是否投票（评分），查询 result 表
-     * 投过返回 true
      * @param userId
      * @param sessionId
      * @param roundId
@@ -131,7 +130,7 @@ public class UserServiceImpl implements UserService {
         result.setSessionId(sessionId);
         //2. 判断
         List<Result> select = resultMapper.select(result);
-        if(select != null) return true;
+        if(select == null) return true;
         else return false;
     }
 
@@ -148,11 +147,10 @@ public class UserServiceImpl implements UserService {
         //获取一条投票信息
         Result result = results.get(0);
         //不存在就继续投票
-        if (!judeVote(result.getUserId(),result.getSessionId(),result.getRoundId())) {
+        if (resultMapper.select(result) == null) {
             //提交投票信息
             for (int i = 0; i < results.size(); i++) {
                  insert = resultMapper.insert(results.get(i));
-                System.out.println(insert);
                 if(insert == 0){
                     break;
                 }

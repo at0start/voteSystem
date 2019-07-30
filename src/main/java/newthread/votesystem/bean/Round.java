@@ -148,4 +148,16 @@ public class Round {
     public void setUpLimit(Integer upLimit) {
         this.upLimit = upLimit;
     }
+
+    @Override
+    public String toString() {
+        return "Round{" +
+                "roundId=" + roundId +
+                ", roundOrder=" + roundOrder +
+                ", sessionId=" + sessionId +
+                ", roundState=" + roundState +
+                ", voteType='" + voteType + '\'' +
+                ", upLimit=" + upLimit +
+                '}';
+    }
 }

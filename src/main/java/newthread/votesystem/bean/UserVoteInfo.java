@@ -16,18 +16,21 @@ public class UserVoteInfo {
     private Integer sessionState;
     // 轮次状态
     private Integer roundState;
+    //投票类型
+    private String voteType;
 
     // 构造器
     public UserVoteInfo() {
     }
 
-    public UserVoteInfo(Integer sessionId, String sessionName, Date sessionDate, Integer roundOrder, Integer sessionState, Integer roundState) {
+    public UserVoteInfo(Integer sessionId, String sessionName, Date sessionDate, Integer roundOrder, Integer sessionState, Integer roundState,String voteType) {
         this.sessionId = sessionId;
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.roundOrder = roundOrder;
         this.sessionState = sessionState;
         this.roundState = roundState;
+        this.voteType = voteType;
     }
 
     @Override
@@ -40,6 +43,14 @@ public class UserVoteInfo {
                 ", sessionState=" + sessionState +
                 ", roundState=" + roundState +
                 '}';
+    }
+
+    public String getVoteType() {
+        return voteType;
+    }
+
+    public void setVoteType(String voteType) {
+        this.voteType = voteType;
     }
 
     public void setSessionId(Integer sessionId) {

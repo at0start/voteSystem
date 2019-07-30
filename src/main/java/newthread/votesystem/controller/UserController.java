@@ -1,8 +1,10 @@
 package newthread.votesystem.controller;
 
-import newthread.votesystem.bean.Message;
-import newthread.votesystem.bean.Project;
-import newthread.votesystem.bean.Result;
+import newthread.votesystem.bean.*;
+import newthread.votesystem.service.ProjectService;
+import newthread.votesystem.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,52 +15,79 @@ import java.util.List;
  * @author 一个糟老头子
  * @createDate 2019/7/17-15:36
  */
+@Controller
 public class UserController {
 
-    //1.遍历当前用户可以投票的所有轮次
-//    @RequestMapping("/getRounds")
-//    @ResponseBody
-//    public List<E> getRounds(@RequestBody String userId){
-//        //1.1判断改评审员是否可以给本轮次投票（有权限，是否已经投票前端去判断）
-//        List list = null;
-//        return list;
-//    }
+    @Autowired
+    UserService userService;
 
-    //2.投票
-    //2.1获取所有改轮次下的项目
-    @RequestMapping("/getProgects")
+    @Autowired
+    ProjectService projectService;
+
+    /**
+     * 查询用户参与投票的轮次信息
+     * @param user(userId)
+     * @return 当前用户可以投票的轮次信息
+     */
+    @RequestMapping("/getUserVoteInfo")
     @ResponseBody
-    public List<Project>  getProgects(@RequestBody Integer sessionId, Integer roundOrder){
+    public List<UserVoteInfo> getUserVoteInfo(@RequestBody User user){
+        return userService.queryAll(user.getUserId());
+    }
 
-        return null;
+    /**
+     * 获取该轮次下的所有项目
+     * @param round (sessionId,roundId)
+     * @return project
+     */
+    @RequestMapping("/getUserProjects")
+    @ResponseBody
+    public List<Project>  getUserProjects(@RequestBody Round round){
+
+        return projectService.queryAllProjectsByRoundId(round.getSessionId(),round.getRoundId());
     }
     //2.1查看是否对当前场次有投票权限
     // SessionUser sessionUser
 
-
-    //2.2查看是否已经投票
-    //2.2.1根据sessionId，round_order,projectId检索出result（list），
-    // 判断其userId是否与传入的userId系相同
-
-    //查询sessionId查询sessionInfo和投票类型
-
-    //根据场次及轮次获取项目信息
-    public List<Project> getPeojexts(@RequestBody Integer sessonId, Integer roundOrder){
-
-
-        //下载项目文件utils
-        return  null;
+    /**
+     * 查看是否有投票权限
+     * @param sessionUser(sessionId userId)
+     * @return boolean
+     */
+    @RequestMapping("/judgeAuthority")
+    @ResponseBody
+    public boolean judgeAuthority(@RequestBody SessionUser sessionUser){
+        return userService.judgeAuthority(sessionUser.getUserId(),sessionUser.getSessionId()) ;
     }
+
+    /**
+     * 查看是否已经投票
+     * 根据sessionId，round_order,projectId检索出result（list），
+     * 判断其userId是否与传入的userId系相同
+     * @param result(sessionId,roundId,userId)
+     * @return  没有投票返回False
+     */
+    @RequestMapping("/judeVote")
+    @ResponseBody
+    public boolean judeVote(@RequestBody Result result){
+        return userService.judeVote(result.getUserId(),result.getSessionId(),result.getRoundId()) ;
+    }
+
+    //下载项目文件
+//    @RequestMapping("/getProjectFile")
+//    @ResponseBody
+//    public List<Project> getProjectFile(@RequestBody Project project){
+//
+//
+//        return  null;
+//    }
 
     //提交投票结果
     @RequestMapping("/addResult")
     @ResponseBody
-    public Message addResult (@RequestBody List<Result> results){
+    public boolean addResult (@RequestBody List<Result> results){
 
-
-
-        Message message = null;
-        return  message;
+        return  userService.addVoteResult(results);
     }
 
 

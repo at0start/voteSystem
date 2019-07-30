@@ -33,7 +33,6 @@ public interface SessionService {
     //获取场次状态
     Integer getSessionState(Integer sessionId);
 
-    //Session session = a.getSessionBySessionId(addSession);
 
     //返回评委人数
     Integer getUserNum(Integer sessionId);

@@ -35,6 +35,8 @@ public interface SessionService {
 
     //Session session = a.getSessionBySessionId(addSession);
 
+    //返回评委人数
+    Integer getUserNum(Integer sessionId);
 
 
 

@@ -128,4 +128,14 @@ public class SessionServiceImpl implements SessionService {
         Session session = sessionMapper.selectByPrimaryKey(sessionId);
         return session.getSessionState();
     }
+
+    /**
+     * 返回评委人数
+     * @param sessionId
+     * @return
+     */
+    @Override
+    public Integer getUserNum(Integer sessionId) {
+        return sessionMapper.selectByPrimaryKey(sessionId).getUserNumber();
+    }
 }

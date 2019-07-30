@@ -29,19 +29,19 @@ public class SessionServiceImplTest {
 //        //getAllSession()
 ////        System.out.println(sessionService.getAllSession());
 //
-//        //giveAuthority()
-////        sessionService.giveAuthority(1);
+        //giveAuthority()
+        sessionService.giveAuthority(2);
 //
 //        //updateSession(): 测试修改主键值为2的场次信息
-////        Session session = sessionService.getSessionBySessionId(2);
-////        session.setUserNumber(11);
-////        sessionService.updateSession(session);
+//        Session session = sessionService.getSessionBySessionId(2);
+//        session.setUserNumber(12);
+//        sessionService.updateSession(session);
 //
         //deleteBySessionId():删除场次信息
-        System.out.println(sessionService.deleteBySessionId(1));
+//        System.out.println(sessionService.deleteBySessionId(1));
 //
-//        //updateSessionState():修改场次状态
-//        sessionService.updateSessionState(2);
+        //updateSessionState():修改场次状态
+//        sessionService.updateSession(2);
 
     }
 }

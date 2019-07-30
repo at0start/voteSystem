@@ -58,6 +58,23 @@ public class Result {
      */
     private Double score;
 
+    public Result() {
+    }
+
+    public Result(Integer sessionId, String sessionName, Integer roundId, Integer projectId, String userId, String projectName, Integer projectOrder, Integer passVote, Integer outVote,Integer abstentionVote, Double score) {
+        this.outVote = outVote;
+        this.sessionId = sessionId;
+        this.sessionName = sessionName;
+        this.roundId = roundId;
+        this.projectId = projectId;
+        this.userId = userId;
+        this.projectName = projectName;
+        this.projectOrder = projectOrder;
+        this.passVote = passVote;
+        this.abstentionVote = abstentionVote;
+        this.score = score;
+    }
+
     /**
      * @return result_id
      */
@@ -248,5 +265,23 @@ public class Result {
      */
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "resultId=" + resultId +
+                ", outVote=" + outVote +
+                ", sessionId=" + sessionId +
+                ", sessionName='" + sessionName + '\'' +
+                ", roundId=" + roundId +
+                ", projectId=" + projectId +
+                ", userId='" + userId + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", projectOrder=" + projectOrder +
+                ", passVote=" + passVote +
+                ", abstentionVote=" + abstentionVote +
+                ", score=" + score +
+                '}';
     }
 }

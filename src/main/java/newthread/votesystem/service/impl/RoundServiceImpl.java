@@ -150,15 +150,15 @@ public class RoundServiceImpl implements RoundService{
 
     /**
      * 开启轮次（修改场次轮次状态）？？
-     * 返回轮次状态信息：1 开始
+     * 返回轮次状态信息：2 开始
      * @return
      */
     @Override
     public Integer startRound(Integer sessionId,Integer roundId) {
         //1. 获取该轮次
         Round round = roundMapper.selectByPrimaryKey(roundId);
-        //2. 修改轮次状态：0 -> 1
-        round.setRoundState(1);
+        //2. 修改轮次状态：1 -> 2
+        round.setRoundState(2);
         //3. 开启轮次
         roundMapper.updateByPrimaryKey(round);
         //4. 开启场次
@@ -174,7 +174,7 @@ public class RoundServiceImpl implements RoundService{
 
     /**
      * 结束轮次
-     * 返回轮次状态信息：0 结束
+     * 返回轮次状态信息：3 结束
      * @param sessionId
      * @param roundId
      * @return
@@ -184,7 +184,7 @@ public class RoundServiceImpl implements RoundService{
         // 获取轮次信息
         Round round = roundMapper.selectByPrimaryKey(roundId);
         // 结束轮次，1 -> 0
-        round.setRoundState(0);
+        round.setRoundState(3);
         // 更新轮次
         roundMapper.updateByPrimaryKey(round);
         return round.getRoundState();

@@ -1,7 +1,11 @@
 package newthread.votesystem.test;
 
+import newthread.votesystem.bean.Project;
 import newthread.votesystem.service.RoundService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoundServiceImplTest {
 
@@ -24,14 +28,16 @@ public class RoundServiceImplTest {
 
 //        //添加项目
 //        List<Project> projects = new ArrayList<>();
-//        for (int i = 1; i < 5; i++) {
+//        for (int i = 2; i < 5; i++) {
 //            Project project = new Project();
 //            project.setProjectId(i);
 //            projects.add(project);
 //        }
-//        roundService.addProject(projects,3,17);
+//        roundService.addProject(projects,2,16);
 
-        //updateRoundState
+        //开启轮次
+        System.out.println(roundService.startRound(2,16));
+
 
     }
 

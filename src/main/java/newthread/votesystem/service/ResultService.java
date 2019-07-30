@@ -4,6 +4,7 @@ package newthread.votesystem.service;
 import newthread.votesystem.bean.Result;
 import newthread.votesystem.bean.ResultInf;
 import newthread.votesystem.bean.ResultMsg;
+import newthread.votesystem.bean.User;
 
 import java.util.List;
 
@@ -28,5 +29,8 @@ public interface ResultService {
     // 查询一个项目分数（根据sessionId，countId利用projectOrder分组）
     // 去掉最高分和最低分求出一个分数，累次求n次（项目总数）
 
+
+    //获取用户投票信息
+    List<String> getUser(Integer sessionId, Integer roundId);
 
 }

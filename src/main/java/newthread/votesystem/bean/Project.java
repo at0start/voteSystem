@@ -63,6 +63,22 @@ public class Project {
     @Column(name = "project_info")
     private String projectInfo;
 
+    public Project() {
+    }
+
+    public Project(Integer projectId, Integer sessionId, Integer projectOrder, String projectName, String projectType, String collegeName, String projectMan, Double money, String projectFile, String projectInfo) {
+        this.projectId = projectId;
+        this.sessionId = sessionId;
+        this.projectOrder = projectOrder;
+        this.projectName = projectName;
+        this.projectType = projectType;
+        this.collegeName = collegeName;
+        this.projectMan = projectMan;
+        this.money = money;
+        this.projectFile = projectFile;
+        this.projectInfo = projectInfo;
+    }
+
     /**
      * 获取项目编号（数据库自动生成）
      *
@@ -241,5 +257,21 @@ public class Project {
      */
     public void setProjectInfo(String projectInfo) {
         this.projectInfo = projectInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectId=" + projectId +
+                ", sessionId=" + sessionId +
+                ", projectOrder=" + projectOrder +
+                ", projectName='" + projectName + '\'' +
+                ", projectType='" + projectType + '\'' +
+                ", collegeName='" + collegeName + '\'' +
+                ", projectMan='" + projectMan + '\'' +
+                ", money=" + money +
+                ", projectFile='" + projectFile + '\'' +
+                ", projectInfo='" + projectInfo + '\'' +
+                '}';
     }
 }

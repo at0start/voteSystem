@@ -2,12 +2,15 @@ package newthread.votesystem.controller;
 
 import newthread.votesystem.bean.Project;
 import newthread.votesystem.bean.Session;
+import newthread.votesystem.bean.webBean.VSession;
 import newthread.votesystem.service.ProjectService;
 import newthread.votesystem.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,8 +32,21 @@ public class SessionController {
      */
     @RequestMapping("/getSessions")
     @ResponseBody
-    public List<Session> getSessionStates() {
-        return sessionService.getAllSession();
+    public VSession getSessionStates() {
+        List<Session> sessions = sessionService.getAllSession();
+        List<Session> before = new ArrayList<>();
+        List<Session> being = new ArrayList<>();
+        List<Session> after = new ArrayList<>();
+        for (Session session: sessions) {
+            if (session.getSessionState()==1){
+                before.add(session);
+            }else if (session.getSessionState()==2){
+                being.add(session);
+            }else {
+                after.add(session);
+            }
+        }
+        return new VSession(before,being,after);
     }
 
     /**
@@ -97,20 +113,21 @@ public class SessionController {
         return sessionService.deleteBySessionId(session.getSessionId());
     }
 
-//    //导入项目（Excel）
-//    @RequestMapping("/addProjectsToSession")
-//    @ResponseBody
-//    public List<Project> addProjectsToSession(@RequestBody String FilePath,Integer sessionId){
-//        return null ;
-//    }
+    //添加项目：导入项目（Excel）
+    @RequestMapping("/addProjectsToSession")
+    @ResponseBody
+    public List<Project> addProjectsToSession(@RequestParam MultipartFile file){
+        return null ;
+    }
+
 
     //1.5.6上传项目文档
-//    @RequestMapping("/sessionUpLode")
-//    @ResponseBody
-//    public Message sessionUpLode(RequestBody File file){
-//
-//        return file;
-//    }
+    @RequestMapping("/projectUpload")
+    @ResponseBody
+    public boolean projectUpload(@RequestParam MultipartFile file){
+
+        return true;
+    }
 
 
     /**

@@ -2,11 +2,11 @@ package newthread.votesystem.controller;
 
 import newthread.votesystem.bean.Round;
 import newthread.votesystem.bean.RoundProject;
+import newthread.votesystem.bean.Session;
 import newthread.votesystem.service.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -19,6 +19,16 @@ public class RoundController {
     @Autowired
     RoundService roundService;
 
+    /**
+     * 获取当前场次的所以轮次
+     * @param session
+     * @return
+     */
+    @RequestMapping("/getRoundsBySessionId")
+    @ResponseBody
+    public List<Round> getRoundsBySessionId(@RequestBody Session session){
+        return roundService.queryAllRoundBySessionId(session.getSessionId());
+    }
     /**
      * 添加轮次
      * @param round
@@ -36,7 +46,7 @@ public class RoundController {
 
     /**
      * 查询轮次信息
-     * @param round （roundId）
+     * @param  round （roundId）
      * @return
      */
     @RequestMapping("/getRoundById")
@@ -58,8 +68,8 @@ public class RoundController {
     }
 
     /**
-     * 删除轮次
      * @param round（sessionId,roundId）
+     * 删除轮次
      * @return
      */
     @RequestMapping("/deleteRound")

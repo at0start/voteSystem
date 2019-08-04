@@ -1,4 +1,4 @@
-package newthread.votesystem.bean;
+package newthread.votesystem.bean.webBean;
 
 public class ResultInf {
 

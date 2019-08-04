@@ -27,6 +27,7 @@ public class IndexController {
     @RequestMapping("/adminLogin")
     @ResponseBody
     public boolean adminIndex(@RequestBody Admin admin){
+
         return adminService.queryAdmin(admin);
     }
 

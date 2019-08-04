@@ -1,6 +1,8 @@
 package newthread.votesystem.controller;
 
 import newthread.votesystem.bean.*;
+import newthread.votesystem.bean.webBean.UserVoteInfo;
+import newthread.votesystem.bean.webBean.VRound;
 import newthread.votesystem.service.ProjectService;
 import newthread.votesystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +35,21 @@ public class UserController {
      */
     @RequestMapping("/getUserVoteInfo")
     @ResponseBody
-    public List<UserVoteInfo> getUserVoteInfo(@RequestBody User user){
-        return userService.queryAll(user.getUserId());
+    public VRound getUserVoteInfo(@RequestBody User user){
+        List<UserVoteInfo> list = userService.queryAll(user.getUserId());
+        List<UserVoteInfo> before = new ArrayList<>();
+        List<UserVoteInfo> being = new ArrayList<>();
+        List<UserVoteInfo> after = new ArrayList<>();
+        for (UserVoteInfo userVoteInfo:list) {
+            if (userVoteInfo.getRoundState()==1){
+                before.add(userVoteInfo);
+            }else if (userVoteInfo.getRoundState()==2){
+                being.add(userVoteInfo);
+            }else {
+                after.add(userVoteInfo);
+            }
+        }
+        return new VRound(before,being,after);
     }
 
     /**
@@ -76,7 +93,7 @@ public class UserController {
     //下载项目文件
 //    @RequestMapping("/getProjectFile")
 //    @ResponseBody
-//    public List<Project> getProjectFile(@RequestBody Project project){
+//    public MultipartFile getProjectFile(@RequestBody Project project){
 //
 //
 //        return  null;

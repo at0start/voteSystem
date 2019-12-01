@@ -1,8 +1,10 @@
 package newthread.votesystem.controller;
 
+import newthread.votesystem.bean.Project;
 import newthread.votesystem.bean.Round;
 import newthread.votesystem.bean.RoundProject;
 import newthread.votesystem.bean.Session;
+import newthread.votesystem.service.ProjectService;
 import newthread.votesystem.service.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +21,11 @@ public class RoundController {
     @Autowired
     RoundService roundService;
 
+    @Autowired
+    ProjectService projectService;
     /**
      * 获取当前场次的所以轮次
-     * @param session
+     * @param session(sessionId)
      * @return
      */
     @RequestMapping("/getRoundsBySessionId")
@@ -116,6 +120,55 @@ public class RoundController {
         return roundState==3?true:false;
     }
 
+    /**
+     * 查询项目信息
+     * @param project（projectId）
+     * @return
+     */
+    @RequestMapping("/queryProjectByProjectId")
+    @ResponseBody
+    public Project queryProjectByProjectId(@RequestBody Project project){
+        return projectService.queryProjectByProjectId(project.getProjectId());
+    }
 
+    @RequestMapping("/queryAllProjectIfChoose")
+    @ResponseBody
+    public List<Project> queryAllProjectIfChoose(@RequestBody Round round){
+        List<Project> sessionProjects = projectService.queryAllProject(round.getSessionId());
+        List<Project> roundProjects  = projectService.queryAllProjectsByRoundId(round.getSessionId(),round.getRoundId());
+        for (Project sp: sessionProjects) {
+            //将所有项目的choose值设为0
+            sp.setChosed(0);
+            for ( Project rp:roundProjects) {
+                if ((sp.getProjectId()).equals(rp.getProjectId())){
+                    //如果两个项目的id相等，表示该项目在这一轮进行投票
+                    //并用choose标记
+                    sp.setChosed(1);
+                }
+            }
+        }
+        return sessionProjects;
+    }
 
+    /**
+     * 修改项目信息
+     * @param project
+     * @return
+     */
+    @RequestMapping("/updateProject")
+    @ResponseBody
+    public boolean updateProject(@RequestBody Project project){
+        return projectService.updateProject(project);
+    }
+
+    /**
+     * 删除项目
+     * @param project
+     * @return
+     */
+    @RequestMapping("/deleteByProjectId")
+    @ResponseBody
+    public boolean deleteByProjectId(@RequestBody Project project){
+        return projectService.deleteByProjectId(project.getProjectId());
+    }
 }

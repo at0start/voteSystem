@@ -1,14 +1,17 @@
 package newthread.votesystem.service.impl;
 
 import newthread.votesystem.bean.Project;
+import newthread.votesystem.bean.ProjectFile;
 import newthread.votesystem.bean.RoundProject;
+import newthread.votesystem.mappers.ProjectFileMapper;
 import newthread.votesystem.mappers.ProjectMapper;
 import newthread.votesystem.mappers.RoundProjectMapper;
 import newthread.votesystem.service.ProjectService;
+import newthread.votesystem.utils.ExcelImport;
+import newthread.votesystem.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +21,15 @@ import java.util.List;
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectService {
 
-    // 项目 dao
     @Autowired
     ProjectMapper projectMapper;
 
     //轮次下项目dao
     @Autowired
     RoundProjectMapper roundProjectMapper;
+
+    @Autowired
+    ProjectFileMapper projectFileMapper;
 
     /**
      * 根据场次查询所有项目
@@ -113,21 +118,81 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 上传项目文件
-     *
-     * @param file
+     * @param //filePath
+     * @param projectId
+     * @return
      */
     @Override
-    public void uploadProjectFile(File file) {
+    public boolean uploadProjectFile(File file,Integer projectId,String fileName ) {
+        //将文件转换成二进制
+        byte[] fileToByte = FileUtils.getFileToByte(file);
+        //查询项目
+        Project project = projectMapper.selectByPrimaryKey(projectId);
+        //设置项目文件信息
+        Integer fileId = project.getFileId();
+        ProjectFile projectFile = new ProjectFile();
+        projectFile.setProjectFile(fileToByte);
+        projectFile.setFileName(fileName);
+        projectFile.setProjectId(projectId);
+        //如果项目文件为存入
+        if (project.getFileId()==null||project.getFileId()==0){
+            int f =projectFileMapper.insert(projectFile);
+            //将fileId添加到project中
+            project.setFileId(projectFile.getFileId());
+            int i =projectMapper.updateByPrimaryKey(project);
+            if(( f== 1) && (i ==1)){
+                return true;
+            }else  return false;
+            //如果项目文件已插入或需要修改
+        }else {
+            projectFile.setFileId(fileId);
+            //修改文件
+            int f = projectFileMapper.updateByPrimaryKey(projectFile);
+            return f==1?true:false;
+        }
 
     }
 
     /**
      * 上传项目（批量添加项目）
-     *
-     * @param file
      */
     @Override
-    public void uploadProject(File file) {
-
+    public List<Project> uploadProject(File file,int sessionId,String fileName) throws Exception {
+        // 将文件转换成javabean
+        List<Project> projects = ExcelImport.getProjectsByFile(file,fileName);
+        // 遍历集合，将文件中的项目存入数据库
+        for(int i = 0;i < projects.size();i++){
+            Project project = projects.get(i);
+            project.setSessionId(sessionId);
+            projectMapper.insert(project);
+        }
+        return projects;
     }
+
+/**
+ * 下载项目文件
+ * @param projectId
+ * @return
+ */
+    @Override
+    public byte[] downLoadProjectFile(Integer projectId) {
+        //根据projectId获取fileId
+        Project project = projectMapper.selectByPrimaryKey(projectId);
+        //根据文件id获取文件
+        ProjectFile projectFile = projectFileMapper.selectByPrimaryKey(project.getFileId());
+        return projectFile.getProjectFile();
+    }
+
+    /**
+     * 获取项目名称
+     * @param projectId
+     * @return
+     */
+    @Override
+    public String getProjectFileName(Integer projectId){
+        Project project = projectMapper.selectByPrimaryKey(projectId);
+        ProjectFile projectFile = projectFileMapper.selectByPrimaryKey(project.getFileId());
+        return projectFile.getFileName();
+    }
+
 }

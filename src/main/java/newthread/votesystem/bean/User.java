@@ -1,5 +1,7 @@
 package newthread.votesystem.bean;
 
+import com.xuxueli.poi.excel.annotation.ExcelField;
+
 import javax.persistence.*;
 
 public class User {
@@ -8,12 +10,14 @@ public class User {
      */
     @Id
     @Column(name = "user_id")
+    @ExcelField(name = "账号")
     private String userId;
 
     /**
      * 用户密码
      */
     @Column(name = "user_password")
+    @ExcelField(name = "密码")
     private String userPassword;
 
     //构造器
@@ -59,5 +63,13 @@ public class User {
      */
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                '}';
     }
 }

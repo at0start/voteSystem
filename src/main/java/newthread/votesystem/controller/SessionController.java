@@ -1,15 +1,23 @@
 package newthread.votesystem.controller;
 
 import newthread.votesystem.bean.Project;
+import newthread.votesystem.bean.Round;
 import newthread.votesystem.bean.Session;
+import newthread.votesystem.bean.webBean.Message;
 import newthread.votesystem.bean.webBean.VSession;
 import newthread.votesystem.service.ProjectService;
+import newthread.votesystem.service.RoundService;
 import newthread.votesystem.service.SessionService;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +34,16 @@ public class SessionController {
     @Autowired
     ProjectService projectService;
 
+    @Autowired
+    RoundService roundService;
+
     /**
      * 评审系统管理界面，检索的所有场次，前端会根据场次状态进行显示
      * @return
      */
     @RequestMapping("/getSessions")
     @ResponseBody
-    public VSession getSessionStates() {
+    public VSession getSessions() {
         List<Session> sessions = sessionService.getAllSession();
         List<Session> before = new ArrayList<>();
         List<Session> being = new ArrayList<>();
@@ -76,7 +87,8 @@ public class SessionController {
     @RequestMapping("/getSessionByID")
     @ResponseBody
     public Session getSessionByID(@RequestBody Session session){
-        return  sessionService.getSessionBySessionId(session.getSessionId());
+        Session session1 =  sessionService.getSessionBySessionId(session.getSessionId());
+        return session1;
     }
 
     /**
@@ -87,17 +99,16 @@ public class SessionController {
     @RequestMapping("updateSession")
     @ResponseBody
     public Session updateSession(@RequestBody Session session) {
-        System.out.println(session);
         //修改场次信息
         boolean b = sessionService.updateSession(session);
-        System.out.println(session);
         //如果评委数目改变时，修改评委权限（增加、减少评委）
         sessionService.giveAuthority(session.getSessionId());
             //返回修改后的场次信息
         if (b){
+            return session;
+        }else {
             return sessionService.getSessionBySessionId(session.getSessionId());
-
-        }else return session;
+        }
     }
 
 
@@ -113,20 +124,51 @@ public class SessionController {
         return sessionService.deleteBySessionId(session.getSessionId());
     }
 
-    //添加项目：导入项目（Excel）
-    @RequestMapping("/addProjectsToSession")
+
+    /**
+     * 添加项目：导入项目（Excel）
+     * @param //upLoadProject
+     * @return
+     * @throws IOException
+     * @throws InvalidFormatException
+     */
+    @RequestMapping(value = "/addProjectsToSession",method = RequestMethod.POST,consumes =  "multipart/form-data")
     @ResponseBody
-    public List<Project> addProjectsToSession(@RequestParam MultipartFile file){
-        return null ;
+    public Message addProjectsToSession(@RequestParam(value = "sessionId",required = false) Integer sessionId
+            , @RequestParam(value = "file",required = false) MultipartFile file) throws IOException, InvalidFormatException {
+
+        Message message =new Message();
+        try {
+            //将file转换成File格式
+            CommonsMultipartFile cf= (CommonsMultipartFile)file;
+            DiskFileItem fi = (DiskFileItem)cf.getFileItem();
+            File file1 = fi.getStoreLocation();
+            //添加bean对象
+            List<Project> list = projectService.uploadProject(file1,sessionId,file.getOriginalFilename());
+            if (list.size()!=0)
+                message.setMessage("上传成功");
+        }catch (Exception e){
+                message.setMessage("上传失败");
+        }
+        return message;
     }
 
 
-    //1.5.6上传项目文档
-    @RequestMapping("/projectUpload")
+    /**
+     * 上传项目文档
+     * @param //projectFile
+     * @return
+     */
+    @RequestMapping(value = "/projectUpload",method = RequestMethod.POST,consumes =  "multipart/form-data")
     @ResponseBody
-    public boolean projectUpload(@RequestParam MultipartFile file){
-
-        return true;
+    public boolean projectUpload(@RequestParam(value = "file",required = false) MultipartFile file
+            ,@RequestParam(value = "projectId",required = false) Integer projectId) throws IOException {
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        CommonsMultipartFile cf= (CommonsMultipartFile)file;
+        DiskFileItem fi = (DiskFileItem)cf.getFileItem();
+        File file1 = fi.getStoreLocation();
+        return projectService.uploadProjectFile(file1,projectId,fileName);
     }
 
 
@@ -135,16 +177,12 @@ public class SessionController {
      * @param project
      * @return
      */
-    @RequestMapping(value = "/addProjectToSession",method = RequestMethod.POST)
+    @RequestMapping("/addProjectToSession")
     @ResponseBody
     public List<Project> addProjectToSession(@RequestBody Project project){
         projectService.addProject(project);
         return  projectService.queryAllProject(project.getSessionId());
     }
-
-
-
-
 
     /**
      * 查询当前场次的所有项目
@@ -163,7 +201,7 @@ public class SessionController {
      * @param project
      * @return
      */
-    @RequestMapping(value = "/updateSessionProject",method = RequestMethod.POST)
+    @RequestMapping("/updateSessionProject")
     @ResponseBody
     public Project updateSessionProject(@RequestBody Project project) {
 
@@ -182,6 +220,13 @@ public class SessionController {
     public boolean endSession(@RequestBody Session session){
         Session session1 = sessionService.getSessionBySessionId(session.getSessionId());
         session1.setSessionState(3);
+        List<Round> rounds = roundService.queryAllRoundBySessionId(session.getSessionId());
+        //结束当前场次下的所有轮次
+        System.out.println(rounds.size());
+        for (Round r : rounds) {
+            if (r.getRoundState()!=3)
+            roundService.endRound(session.getSessionId(),r.getRoundId());
+        }
         return sessionService.updateSession(session1);
     }
 }

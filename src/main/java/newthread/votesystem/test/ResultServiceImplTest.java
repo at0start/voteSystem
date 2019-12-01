@@ -1,10 +1,7 @@
 package newthread.votesystem.test;
 
-import newthread.votesystem.bean.Result;
-import newthread.votesystem.bean.ResultMsg;
 import newthread.votesystem.service.ResultService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import sun.tools.jar.Main;
 
 public class ResultServiceImplTest {
 

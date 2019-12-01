@@ -39,7 +39,7 @@
     </bean>
 
 
-    <!--&lt;!&ndash; 配置一个可以执行批量的 sqlSession &ndash;&gt;-->
+    <!-- 配置一个可以执行批量的 sqlSession -->
     <!--<bean id="sqlSession" class="tk.mybatis.spring.SqlSessionTemplate">-->
     <!--<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>-->
     <!--<constructor-arg name="executorType" value="BATCH"></constructor-arg>-->

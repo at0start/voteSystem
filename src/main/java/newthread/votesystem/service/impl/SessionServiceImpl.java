@@ -1,12 +1,9 @@
 package newthread.votesystem.service.impl;
 
-import newthread.votesystem.bean.Project;
-import newthread.votesystem.bean.Session;
-import newthread.votesystem.bean.SessionUser;
-import newthread.votesystem.mappers.ProjectMapper;
-import newthread.votesystem.mappers.SessionMapper;
-import newthread.votesystem.mappers.SessionUserMapper;
+import newthread.votesystem.bean.*;
+import newthread.votesystem.mappers.*;
 import newthread.votesystem.service.SessionService;
+import newthread.votesystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +25,11 @@ public class SessionServiceImpl implements SessionService {
     @Autowired
     ProjectMapper projectMapper;
 
+    @Autowired
+    RoundMapper roundMapper;
+
+    @Autowired
+    UserMapper userMapper;
     /**
      * 获取所有的场次
      *
@@ -58,12 +60,13 @@ public class SessionServiceImpl implements SessionService {
      */
     @Override
     public Session getSessionBySessionId(Integer sessionId) {
+        System.out.println(sessionId+"sessionId");
+        System.out.println(sessionMapper.selectByPrimaryKey(sessionId)+"session");
         return sessionMapper.selectByPrimaryKey(sessionId);
     }
 
     /**
      * 赋予评委场次投票权限
-     *
      * @param sessionId
      */
     @Override
@@ -76,8 +79,9 @@ public class SessionServiceImpl implements SessionService {
         sessionUser.setSessionId(sessionId);
         sessionUserMapper.delete(sessionUser);
         //3. 访问权限表,添加权限信息（session_user）
-        for (int i = 1; i <= userNumber; i++) {
-            sessionUserMapper.insert(new SessionUser(sessionId, "j" + i));
+        List<User> list = userMapper.selectAll();
+        for (int i = 0; i < userNumber; i++) {
+            sessionUserMapper.insert(new SessionUser(sessionId, list.get(i).getUserId()));
         }
     }
 
@@ -110,9 +114,13 @@ public class SessionServiceImpl implements SessionService {
         //3. 删除场次下的项目
         Project project = new Project();
         project.setSessionId(sessionId);
+        //删除该场次的所有轮次
+        Round round = new Round();
+        round.setSessionId(sessionId);
+        int l = roundMapper.delete(round);
         int k = projectMapper.delete(project);
         //判断是否删除成功
-        if(i == 1 && j == 1 && k == 1){
+        if(i == 1 && j == 1 && l ==1){
             return  true;
         }else return false;
     }

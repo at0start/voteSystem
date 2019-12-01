@@ -1,21 +1,18 @@
 package newthread.votesystem.bean;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
 
 public class Session {
     @Id
-    @GeneratedValue(generator = "JDBC")
     @Column(name = "session_id")
+    @GeneratedValue(generator = "JDBC")
     private Integer sessionId;
 
     @Column(name = "session_name")
     private String sessionName;
 
     @Column(name = "session_date")
-    private Date sessionDate;
+    private String sessionDate;
 
     /**
      * V.投票制，T.十分制，H.百分制
@@ -37,21 +34,6 @@ public class Session {
 
     @Column(name = "user_number")
     private Integer userNumber;
-
-    //构造器
-
-    public Session() {
-    }
-
-    public Session(Integer sessionId, String sessionName, Date sessionDate, String voteType, Integer sessionState, String sessionInfo, Integer userNumber) {
-        this.sessionId = sessionId;
-        this.sessionName = sessionName;
-        this.sessionDate = sessionDate;
-        this.voteType = voteType;
-        this.sessionState = sessionState;
-        this.sessionInfo = sessionInfo;
-        this.userNumber = userNumber;
-    }
 
     /**
      * @return session_id
@@ -84,14 +66,14 @@ public class Session {
     /**
      * @return session_date
      */
-    public Date getSessionDate() {
+    public String getSessionDate() {
         return sessionDate;
     }
 
     /**
      * @param sessionDate
      */
-    public void setSessionDate(Date sessionDate) {
+    public void setSessionDate(String sessionDate) {
         this.sessionDate = sessionDate;
     }
 
@@ -168,7 +150,7 @@ public class Session {
         return "Session{" +
                 "sessionId=" + sessionId +
                 ", sessionName='" + sessionName + '\'' +
-                ", sessionDate=" + sessionDate +
+                ", sessionDate='" + sessionDate + '\'' +
                 ", voteType='" + voteType + '\'' +
                 ", sessionState=" + sessionState +
                 ", sessionInfo='" + sessionInfo + '\'' +

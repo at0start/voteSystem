@@ -1,7 +1,6 @@
 package newthread.votesystem.service;
 
 
-import newthread.votesystem.bean.Project;
 import newthread.votesystem.bean.Round;
 import newthread.votesystem.bean.RoundProject;
 
@@ -33,8 +32,6 @@ public interface RoundService {
 //    Integer addProject(List<Project> projects,Integer sessionId,Integer roundId);
     boolean addProject(List<RoundProject> projects);
 
-//    //批量取消项目
-//    void deleteBathProject(List<Project> projects);
 
     //查询轮次状态
     Integer queryRoundState(Integer roundId);
@@ -44,11 +41,6 @@ public interface RoundService {
 
     //结束轮次
     Integer endRound(Integer sessionId,Integer roundId);
-
-//    //查看评委结果
-//    List<String> queryResult(Integer sessionId, Integer roundOrder);
-
-    //查看评审结果
 
 
 }

@@ -2,8 +2,11 @@ package newthread.votesystem.service;
 
 
 import newthread.votesystem.bean.Project;
+import newthread.votesystem.bean.User;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -30,9 +33,15 @@ public interface ProjectService {
     boolean updateProject(Project project);
 
     //上传项目文件
-    void uploadProjectFile(File file);
+    boolean uploadProjectFile(File file,Integer projectId,String fileName);
 
     //根据文件操作批量上传项目
-    void uploadProject(File file);
+    List<Project> uploadProject(File file,int sessionId,String fileName) throws Exception;
+
+    //根据项目id下载项目文件
+    byte[] downLoadProjectFile(Integer projectId) throws IOException;
+
+    //获取项目名称
+    String getProjectFileName(Integer projectId);
 
 }

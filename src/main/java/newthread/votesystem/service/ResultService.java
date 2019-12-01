@@ -1,10 +1,8 @@
 package newthread.votesystem.service;
 
 
-import newthread.votesystem.bean.Result;
-import newthread.votesystem.bean.ResultInf;
-import newthread.votesystem.bean.ResultMsg;
-import newthread.votesystem.bean.User;
+import newthread.votesystem.bean.webBean.ResultInf;
+import newthread.votesystem.bean.webBean.ResultMsg;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public interface ResultService {
 
     //2.3. 计算票数
     //创建一个类（。。。）(根据分组)
-    List<ResultInf> countNote(Integer sessionId, Integer countId);
+    List<ResultInf> countNote(Integer sessionId, Integer roundId);
 
     //打分制:
     // 查询一个项目分数（根据sessionId，countId利用projectOrder分组）

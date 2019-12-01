@@ -1,14 +1,11 @@
 package newthread.votesystem.service.impl;
 
 import newthread.votesystem.bean.Admin;
-import newthread.votesystem.bean.Project;
-import newthread.votesystem.bean.Result;
 import newthread.votesystem.mappers.AdminMapper;
 import newthread.votesystem.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service(value = "adminService")
 public class AdminServiceImpl implements AdminService {

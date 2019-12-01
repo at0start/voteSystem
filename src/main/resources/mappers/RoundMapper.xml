@@ -11,5 +11,6 @@
     <result column="round_state" property="roundState" jdbcType="INTEGER" />
     <result column="vote_type" property="voteType" jdbcType="CHAR" />
     <result column="up_limit" property="upLimit" jdbcType="INTEGER" />
+    <result column="vote_rule" property="voteRule" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

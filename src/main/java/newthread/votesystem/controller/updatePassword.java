@@ -1,6 +1,12 @@
 package newthread.votesystem.controller;
 
+import newthread.votesystem.bean.User;
+import newthread.votesystem.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.List;
 
 /**
  * @author 一个糟老头子
@@ -9,8 +15,16 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class updatePassword {
 
-    //1.1修改评审员密码
+    @Autowired
+    UserService userService;
 
-
-    //1.2显示评审员密码
+    /**
+     * 修改并返回修改后的评委密码
+     * @return
+     */
+    @RequestMapping("/updatePassword")
+    @ResponseBody
+    public List<User> updatePassword(){
+        return userService.updatePassword();
+    }
 }

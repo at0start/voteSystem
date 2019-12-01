@@ -6,9 +6,10 @@ import newthread.votesystem.service.AdminService;
 import newthread.votesystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author 一个糟老头子
@@ -24,17 +25,33 @@ public class IndexController {
     UserService userService;
 
 
-    @RequestMapping("/adminLogin")
+    @RequestMapping(value = "/adminLogin",produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public boolean adminIndex(@RequestBody Admin admin){
-
-        return adminService.queryAdmin(admin);
+    public boolean adminIndex(@RequestBody Admin admin, HttpServletRequest request) {
+        if (adminService.queryAdmin(admin)) {
+            request.getSession().setAttribute("userName", admin.getAdminId());
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    @RequestMapping("/userLogin")
+    @RequestMapping(value = "/userLogin",produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public boolean userLogin(@RequestBody User user){
-        return userService.queryUser(user);
+    public boolean userLogin(@RequestBody User user, HttpServletRequest request) {
+        if (userService.queryUser(user)) {
+            request.getSession().setAttribute("userName", user.getUserId());
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    @RequestMapping("/logout")
+    @ResponseBody
+    public boolean logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("/**/index.html");
+        return true;
+    }
 }

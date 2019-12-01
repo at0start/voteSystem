@@ -75,4 +75,13 @@ public class RoundProject {
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
+
+    @Override
+    public String toString() {
+        return "RoundProject{" +
+                "sessionId=" + sessionId +
+                ", roundId=" + roundId +
+                ", projectId=" + projectId +
+                '}';
+    }
 }

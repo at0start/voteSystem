@@ -7,8 +7,8 @@ public class Round {
      * 轮次主键
      */
     @Id
-    @GeneratedValue(generator = "JDBC")
     @Column(name = "round_id")
+    @GeneratedValue(generator = "JDBC")
     private Integer roundId;
 
     /**
@@ -24,7 +24,7 @@ public class Round {
     private Integer sessionId;
 
     /**
-     * 轮次状态； 1：进行中，0：已结束
+     * 轮次状态； 1：未开始，2：进行中，3：已结束
      */
     @Column(name = "round_state")
     private Integer roundState;
@@ -40,6 +40,25 @@ public class Round {
      */
     @Column(name = "up_limit")
     private Integer upLimit;
+
+    /**
+     * 投票规则说明
+     */
+    @Column(name = "vote_rule")
+    private String voteRule;
+
+    public Round(){}
+
+
+    public Round(Integer roundId, Integer roundOrder, Integer sessionId, Integer roundState, String voteType, Integer upLimit, String voteRule) {
+        this.roundId = roundId;
+        this.roundOrder = roundOrder;
+        this.sessionId = sessionId;
+        this.roundState = roundState;
+        this.voteType = voteType;
+        this.upLimit = upLimit;
+        this.voteRule = voteRule;
+    }
 
     /**
      * 获取轮次主键
@@ -96,18 +115,18 @@ public class Round {
     }
 
     /**
-     * 获取轮次状态； 1：进行中，0：已结束
+     * 获取轮次状态； 1：未开始，2：进行中，3：已结束
      *
-     * @return round_state - 轮次状态； 1：进行中，0：已结束
+     * @return round_state - 轮次状态； 1：未开始，2：进行中，3：已结束
      */
     public Integer getRoundState() {
         return roundState;
     }
 
     /**
-     * 设置轮次状态； 1：进行中，0：已结束
+     * 设置轮次状态； 1：未开始，2：进行中，3：已结束
      *
-     * @param roundState 轮次状态； 1：进行中，0：已结束
+     * @param roundState 轮次状态； 1：未开始，2：进行中，3：已结束
      */
     public void setRoundState(Integer roundState) {
         this.roundState = roundState;
@@ -149,15 +168,21 @@ public class Round {
         this.upLimit = upLimit;
     }
 
-    @Override
-    public String toString() {
-        return "Round{" +
-                "roundId=" + roundId +
-                ", roundOrder=" + roundOrder +
-                ", sessionId=" + sessionId +
-                ", roundState=" + roundState +
-                ", voteType='" + voteType + '\'' +
-                ", upLimit=" + upLimit +
-                '}';
+    /**
+     * 获取投票规则说明
+     *
+     * @return vote_rule - 投票规则说明
+     */
+    public String getVoteRule() {
+        return voteRule;
+    }
+
+    /**
+     * 设置投票规则说明
+     *
+     * @param voteRule 投票规则说明
+     */
+    public void setVoteRule(String voteRule) {
+        this.voteRule = voteRule;
     }
 }

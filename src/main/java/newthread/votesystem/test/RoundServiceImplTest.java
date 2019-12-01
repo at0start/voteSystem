@@ -1,11 +1,7 @@
 package newthread.votesystem.test;
 
-import newthread.votesystem.bean.Project;
 import newthread.votesystem.service.RoundService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RoundServiceImplTest {
 

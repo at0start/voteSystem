@@ -9,7 +9,7 @@ public class UserVoteInfo {
     // 场次名称
     private String sessionName;
     // 场次时间
-    private Date sessionDate;
+    private String sessionDate;
     // 轮次编号
     private Integer roundOrder;
     // 场次状态
@@ -19,86 +19,94 @@ public class UserVoteInfo {
     //投票类型
     private String voteType;
 
-    // 构造器
+    private Integer roundId;
+
+    public UserVoteInfo(Integer sessionId, String sessionName, String sessionDate, Integer roundOrder
+            , Integer sessionState, Integer roundState, String voteType, Integer roundId) {
+        this.sessionId = sessionId;
+        this.sessionName = sessionName;
+        this.sessionDate = sessionDate;
+        this.roundOrder = roundOrder;
+        this.sessionState = sessionState;
+        this.roundState = roundState;
+        this.voteType = voteType;
+        this.roundId = roundId;
+    }
+
+    public Integer getRoundId() {
+
+        return roundId;
+    }
+
+    public UserVoteInfo setRoundId(Integer roundId) {
+        this.roundId = roundId;
+        return this;
+    }
+
     public UserVoteInfo() {
-    }
 
-    public UserVoteInfo(Integer sessionId, String sessionName, Date sessionDate, Integer roundOrder, Integer sessionState, Integer roundState,String voteType) {
-        this.sessionId = sessionId;
-        this.sessionName = sessionName;
-        this.sessionDate = sessionDate;
-        this.roundOrder = roundOrder;
-        this.sessionState = sessionState;
-        this.roundState = roundState;
-        this.voteType = voteType;
-    }
-
-    @Override
-    public String toString() {
-        return "UserVoteInfo{" +
-                "sessionId=" + sessionId +
-                ", sessionName='" + sessionName + '\'' +
-                ", sessionDate=" + sessionDate +
-                ", roundOrder=" + roundOrder +
-                ", sessionState=" + sessionState +
-                ", roundState=" + roundState +
-                '}';
-    }
-
-    public String getVoteType() {
-        return voteType;
-    }
-
-    public void setVoteType(String voteType) {
-        this.voteType = voteType;
-    }
-
-    public void setSessionId(Integer sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public void setSessionName(String sessionName) {
-        this.sessionName = sessionName;
-    }
-
-    public void setSessionDate(Date sessionDate) {
-        this.sessionDate = sessionDate;
-    }
-
-    public void setRoundOrder(Integer roundOrder) {
-        this.roundOrder = roundOrder;
-    }
-
-    public void setSessionState(Integer sessionState) {
-        this.sessionState = sessionState;
-    }
-
-    public void setRoundState(Integer roundState) {
-        this.roundState = roundState;
     }
 
     public Integer getSessionId() {
-
         return sessionId;
+    }
+
+    public UserVoteInfo setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
+        return this;
     }
 
     public String getSessionName() {
         return sessionName;
     }
 
-    public Date getSessionDate() {
+    public UserVoteInfo setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+        return this;
+    }
+
+    public String getSessionDate() {
         return sessionDate;
+    }
+
+    public UserVoteInfo setSessionDate(String sessionDate) {
+        this.sessionDate = sessionDate;
+        return this;
     }
 
     public Integer getRoundOrder() {
         return roundOrder;
     }
 
+    public UserVoteInfo setRoundOrder(Integer roundOrder) {
+        this.roundOrder = roundOrder;
+        return this;
+    }
+
     public Integer getSessionState() {
         return sessionState;
     }
 
+    public UserVoteInfo setSessionState(Integer sessionState) {
+        this.sessionState = sessionState;
+        return this;
+    }
+
     public Integer getRoundState() {
         return roundState;
+    }
+
+    public UserVoteInfo setRoundState(Integer roundState) {
+        this.roundState = roundState;
+        return this;
+    }
+
+    public String getVoteType() {
+        return voteType;
+    }
+
+    public UserVoteInfo setVoteType(String voteType) {
+        this.voteType = voteType;
+        return this;
     }
 }

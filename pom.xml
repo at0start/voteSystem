@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>only.mewThread</groupId>
+    <groupId>only.mewthread</groupId>
     <artifactId>voteSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -196,59 +196,64 @@
         </dependency>
 
 
-        <!--<dependency>-->
-        <!--<groupId>org.codehaus.jackson</groupId>-->
-        <!--<artifactId>jackson-mapper-asl</artifactId>-->
-        <!--<version>1.9.8</version>-->
-        <!--<type>jar</type>-->
-        <!--<scope>compile</scope>-->
-        <!--</dependency>-->
-        <!-- JSONObject对象依赖的jar包 -->
-        <!--<dependency>-->
-        <!--<groupId>commons-beanutils</groupId>-->
-        <!--<artifactId>commons-beanutils</artifactId>-->
-        <!--<version>1.9.3</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>commons-collections</groupId>-->
-        <!--<artifactId>commons-collections</artifactId>-->
-        <!--<version>3.2.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>commons-lang</groupId>-->
-        <!--<artifactId>commons-lang</artifactId>-->
-        <!--<version>2.6</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>commons-logging</groupId>-->
-        <!--<artifactId>commons-logging</artifactId>-->
-        <!--<version>1.1.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>net.sf.ezmorph</groupId>-->
-        <!--<artifactId>ezmorph</artifactId>-->
-        <!--<version>1.0.6</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>net.sf.json-lib</groupId>-->
-        <!--<artifactId>json-lib</artifactId>-->
-        <!--<version>2.2.3</version>-->
-        <!--<classifier>jdk15</classifier>&lt;!&ndash; 指定jdk版本 &ndash;&gt;-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; Json依赖架包下载 &ndash;&gt;-->
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.7</version>
         </dependency>
 
+        <!-- java对象和excel转换工具xxl-excel -->
+        <!-- https://mvnrepository.com/artifact/com.xuxueli/xxl-excel -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-excel</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.xuxueli</groupId>-->
+            <!--<artifactId>xxl-excel</artifactId>-->
+            <!--<version>1.0.0</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+
+        <!--文件上传-->
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <!--测试时跨域问题-->
+        <!-- https://mvnrepository.com/artifact/com.thetransactioncompany/cors-filter -->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.thetransactioncompany/java-property-utils -->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>java-property-utils</artifactId>
+            <version>1.10</version>
+        </dependency>
     </dependencies>
 
 
-
     <build>
-        <finalName>weixin</finalName>
+        <finalName>voteSystem</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>

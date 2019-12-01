@@ -14,18 +14,30 @@ public class ResultMsg {
     private Integer voteNum;
     //未投票人数
     private Integer notVoteNum;
-
+    //投票规则
+    private String voteRule;
     public ResultMsg() {
 
     }
 
-    public ResultMsg(Integer sessionOrder, String sessionName, String voteType, String countType, Integer voteNum, Integer notVoteNum) {
+    public ResultMsg(Integer sessionOrder, String sessionName, String voteType
+            , String countType, Integer voteNum, Integer notVoteNum, String voteRule) {
         this.sessionOrder = sessionOrder;
         this.sessionName = sessionName;
         this.voteType = voteType;
         this.countType = countType;
         this.voteNum = voteNum;
         this.notVoteNum = notVoteNum;
+        this.voteRule = voteRule;
+    }
+
+    public String getVoteRule() {
+        return voteRule;
+    }
+
+    public ResultMsg setVoteRule(String voteRule) {
+        this.voteRule = voteRule;
+        return this;
     }
 
     public Integer getSessionOrder() {

@@ -22,7 +22,34 @@
     <!-- 两个标准配置  -->
     <!-- 将 springmvc 不能处理的请求交给 tomcat -->
     <mvc:default-servlet-handler/>
+
+
     <!-- 能支持 springmvc 更高级的一些功能，JSR303 校验，快捷的 ajax...映射动态请求 -->
     <mvc:annotation-driven/>
+
+    <!--上传文件-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--最大上传文件-->
+        <property name="maxUploadSize" value="10240000000"/>
+        <property name="maxInMemorySize" value="1"></property>
+    </bean>
+
+    <!--配置登录拦截器-->
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+        <!--&lt;!&ndash;表示拦截所以路径&ndash;&gt;-->
+        <!--<mvc:mapping path="/**"/>-->
+        <!--&lt;!&ndash;&lt;!&ndash;表示不拦截静态资源&ndash;&gt;&ndash;&gt;-->
+        <!--<mvc:exclude-mapping path="/img/**"/>-->
+        <!--<mvc:exclude-mapping path="/lib/**"/>-->
+        <!--<mvc:exclude-mapping path="/self/**"/>-->
+        <!--<mvc:exclude-mapping path="/view/**"/>-->
+        <!--&lt;!&ndash;拦截器类:不需要拦截的路径&ndash;&gt;-->
+        <!--<mvc:exclude-mapping path="/**/adminLogin"/>-->
+        <!--<mvc:exclude-mapping path="/**/userLogin"/>-->
+        <!--<bean class="newthread.votesystem.controller.LoginInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+<!--</mvc:interceptors>-->
 
 </beans>

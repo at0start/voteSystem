@@ -13,7 +13,7 @@
     <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
     <result column="project_man" property="projectMan" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="DOUBLE" />
-    <result column="project_file" property="projectFile" jdbcType="VARCHAR" />
+    <result column="file_id" property="fileId" jdbcType="INTEGER" />
     <result column="project_info" property="projectInfo" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

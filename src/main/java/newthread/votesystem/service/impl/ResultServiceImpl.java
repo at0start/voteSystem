@@ -1,10 +1,9 @@
 package newthread.votesystem.service.impl;
 
 import newthread.votesystem.bean.*;
-import newthread.votesystem.mappers.ProjectMapper;
-import newthread.votesystem.mappers.ResultMapper;
-import newthread.votesystem.mappers.RoundProjectMapper;
-import newthread.votesystem.mappers.SessionMapper;
+import newthread.votesystem.bean.webBean.ResultInf;
+import newthread.votesystem.bean.webBean.ResultMsg;
+import newthread.votesystem.mappers.*;
 import newthread.votesystem.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +29,8 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     ProjectMapper projectMapper;
 
+    @Autowired
+    RoundMapper roundMapper;
     /**
      * 计算评委投票情况（返回已投票）
      *
@@ -70,11 +71,12 @@ public class ResultServiceImpl implements ResultService {
     public ResultMsg queryByRoundId(Integer sessionId, Integer roundId) {
         //查询场次信息
         Session session = sessionMapper.selectByPrimaryKey(sessionId);
+        Round round = roundMapper.selectByPrimaryKey(roundId);
         ResultMsg resultMsg = new ResultMsg(session.getSessionId(),
                 session.getSessionName(), session.getVoteType(),
                 null, count(sessionId, roundId),
-                session.getUserNumber() - count(sessionId, roundId));
-        if (session.getVoteType() == "V") {
+                session.getUserNumber() - count(sessionId, roundId),round.getVoteRule());
+        if (session.getVoteType() .equals("V")||session.getVoteType().equals("v")) {
             resultMsg.setCountType("全部累加");
         } else {
             resultMsg.setCountType("去掉最高分和最低分，取平均值");
@@ -84,7 +86,7 @@ public class ResultServiceImpl implements ResultService {
 
     /**
      * 返回结果信息（数据表）
-     *
+     *反对，赞成，弃权，分数，投票方式
      * @param sessionId
      * @param roundId
      * @return
@@ -106,13 +108,18 @@ public class ResultServiceImpl implements ResultService {
         roundProject.setSessionId(sessionId);
         roundProject.setRoundId(roundId);
         List<RoundProject> roundProjects = roundProjectMapper.select(roundProject);
+        for (RoundProject project:
+                roundProjects) {
+            System.out.println(project);
+        }
         //1. 判断场次投票方式（投票/打分）
         Session session = sessionMapper.selectByPrimaryKey(sessionId);
+        System.out.println(session);
         //获取评委人数（默认都打分）
         Integer userNumber = session.getUserNumber();
         String voteType = session.getVoteType();
         //投票制
-        if (voteType.equals("v")) {
+        if (voteType.equals("v") || voteType.equals("V")) {
             //根据场次，轮次，项目id计算票数
             //获取 i 各项目
             for (int i = 0; i < roundProjects.size(); i++) {
@@ -136,7 +143,7 @@ public class ResultServiceImpl implements ResultService {
                 //根据项目 id 查询项目信息
                 Project project = projectMapper.selectByPrimaryKey(roundProjects.get(i).getProjectId());
                 //封装结果信息
-                ResultInf resultInf = new ResultInf(project.getProjectId(), null, project.getProjectName(), pass, out, abstention, 0.0);
+                ResultInf resultInf = new ResultInf(project.getProjectId(), project.getCollegeName(), project.getProjectName(), pass, out, abstention, 0.0);
                 resultInfs.add(resultInf);
                 //清零
                 pass = 0;
@@ -182,13 +189,17 @@ public class ResultServiceImpl implements ResultService {
             }
             //计算一个项目的总分数
             Arrays.sort(scores);
+
+
+
+            System.out.println(scores);
             for (int k = 1; k < results.size() - 1; k++)
                 scoreFinal += scores[k];
             scoreFinal = scoreFinal / (results.size() - 2);
             //根据项目 id 查询项目信息
             Project project = projectMapper.selectByPrimaryKey(roundProjects.get(i).getProjectId());
             //封装结果信息
-            ResultInf resultInf = new ResultInf(project.getProjectId(), null, project.getProjectName(), 0, 0, 0, scoreFinal);
+            ResultInf resultInf = new ResultInf(project.getProjectId(), project.getCollegeName(), project.getProjectName(), 0, 0, 0, scoreFinal);
             resultInfs.add(resultInf);
             scoreFinal = 0;
         }
@@ -204,12 +215,10 @@ public class ResultServiceImpl implements ResultService {
         });
         return resultInfs;
     }
-
 }
 
     /**
      * 查询用户投票信息
-     *
      * @param sessionId
      * @param roundId
      * @return

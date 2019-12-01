@@ -3,11 +3,15 @@ package newthread.votesystem.bean;
 import javax.persistence.*;
 
 public class Project {
+
+    @Transient
+    private Integer chosed;
     /**
      * 项目编号（数据库自动生成）
      */
     @Id
     @Column(name = "project_id")
+    @GeneratedValue(generator = "JDBC")
     private Integer projectId;
 
     /**
@@ -52,10 +56,10 @@ public class Project {
     private Double money;
 
     /**
-     * 项目文件
+     * 项目文件id
      */
-    @Column(name = "project_file")
-    private String projectFile;
+    @Column(name = "file_id")
+    private Integer fileId;
 
     /**
      * 项目简介
@@ -63,22 +67,14 @@ public class Project {
     @Column(name = "project_info")
     private String projectInfo;
 
-    public Project() {
+    public Integer getChosed() {
+
+        return chosed;
     }
 
-    public Project(Integer projectId, Integer sessionId, Integer projectOrder, String projectName, String projectType, String collegeName, String projectMan, Double money, String projectFile, String projectInfo) {
-        this.projectId = projectId;
-        this.sessionId = sessionId;
-        this.projectOrder = projectOrder;
-        this.projectName = projectName;
-        this.projectType = projectType;
-        this.collegeName = collegeName;
-        this.projectMan = projectMan;
-        this.money = money;
-        this.projectFile = projectFile;
-        this.projectInfo = projectInfo;
+    public void setChosed(Integer chosed) {
+        this.chosed = chosed;
     }
-
     /**
      * 获取项目编号（数据库自动生成）
      *
@@ -224,21 +220,21 @@ public class Project {
     }
 
     /**
-     * 获取项目文件
+     * 获取项目文件id
      *
-     * @return project_file - 项目文件
+     * @return file_id - 项目文件id
      */
-    public String getProjectFile() {
-        return projectFile;
+    public Integer getFileId() {
+        return fileId;
     }
 
     /**
-     * 设置项目文件
+     * 设置项目文件id
      *
-     * @param projectFile 项目文件
+     * @param fileId 项目文件id
      */
-    public void setProjectFile(String projectFile) {
-        this.projectFile = projectFile;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     /**
@@ -270,8 +266,22 @@ public class Project {
                 ", collegeName='" + collegeName + '\'' +
                 ", projectMan='" + projectMan + '\'' +
                 ", money=" + money +
-                ", projectFile='" + projectFile + '\'' +
+                ", fileId=" + fileId +
                 ", projectInfo='" + projectInfo + '\'' +
                 '}';
+    }
+    public Project(){}
+    public Project(Integer chosed, Integer projectId, Integer sessionId, Integer projectOrder, String projectName, String projectType, String collegeName, String projectMan, Double money, Integer fileId, String projectInfo) {
+        this.chosed = chosed;
+        this.projectId = projectId;
+        this.sessionId = sessionId;
+        this.projectOrder = projectOrder;
+        this.projectName = projectName;
+        this.projectType = projectType;
+        this.collegeName = collegeName;
+        this.projectMan = projectMan;
+        this.money = money;
+        this.fileId = fileId;
+        this.projectInfo = projectInfo;
     }
 }

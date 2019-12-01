@@ -1,5 +1,6 @@
 package newthread.votesystem.service.impl;
 
+
 import newthread.votesystem.bean.Round;
 import newthread.votesystem.bean.RoundProject;
 import newthread.votesystem.bean.Session;
@@ -173,6 +174,7 @@ public class RoundServiceImpl implements RoundService{
         return round.getRoundState();
 
     }
+
 
 
 }

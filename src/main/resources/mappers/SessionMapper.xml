@@ -7,7 +7,7 @@
     -->
     <id column="session_id" property="sessionId" jdbcType="INTEGER" />
     <result column="session_name" property="sessionName" jdbcType="VARCHAR" />
-    <result column="session_date" property="sessionDate" jdbcType="DATE" />
+    <result column="session_date" property="sessionDate" jdbcType="VARCHAR" />
     <result column="vote_type" property="voteType" jdbcType="CHAR" />
     <result column="session_state" property="sessionState" jdbcType="INTEGER" />
     <result column="session_info" property="sessionInfo" jdbcType="VARCHAR" />

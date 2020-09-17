@@ -7,7 +7,7 @@ import org.apache.poi.hssf.util.HSSFColor;
 @ExcelSheet(name = "项目列表", headColor = HSSFColor.HSSFColorPredefined.LIGHT_GREEN)
 public class Projects {
 
-        @ExcelField(name = "项目ID")
+        @ExcelField(name = "项目编号")
         private int projectId;
 
         @ExcelField(name= "项目序号")

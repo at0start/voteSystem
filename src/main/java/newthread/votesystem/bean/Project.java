@@ -1,5 +1,7 @@
 package newthread.votesystem.bean;
 
+import tk.mybatis.mapper.annotation.KeySql;
+
 import javax.persistence.*;
 
 public class Project {
@@ -12,6 +14,7 @@ public class Project {
     @Id
     @Column(name = "project_id")
     @GeneratedValue(generator = "JDBC")
+    @KeySql(useGeneratedKeys = true)
     private Integer projectId;
 
     /**
@@ -275,6 +278,19 @@ public class Project {
         this.chosed = chosed;
         this.projectId = projectId;
         this.sessionId = sessionId;
+        this.projectOrder = projectOrder;
+        this.projectName = projectName;
+        this.projectType = projectType;
+        this.collegeName = collegeName;
+        this.projectMan = projectMan;
+        this.money = money;
+        this.fileId = fileId;
+        this.projectInfo = projectInfo;
+    }
+
+    public Project(Integer sessionId,Integer projectId, Integer projectOrder, String projectName, String projectType, String collegeName, String projectMan, Double money, Integer fileId, String projectInfo) {
+        this.sessionId = sessionId;
+        this.projectId = projectId;
         this.projectOrder = projectOrder;
         this.projectName = projectName;
         this.projectType = projectType;

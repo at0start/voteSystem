@@ -7,7 +7,7 @@ import newthread.votesystem.mappers.ProjectFileMapper;
 import newthread.votesystem.mappers.ProjectMapper;
 import newthread.votesystem.mappers.RoundProjectMapper;
 import newthread.votesystem.service.ProjectService;
-import newthread.votesystem.utils.ExcelImport;
+import newthread.votesystem.utils.ExcelToJavaBean;
 import newthread.votesystem.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,7 +118,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 上传项目文件
-     * @param //filePath
      * @param projectId
      * @return
      */
@@ -159,14 +158,31 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> uploadProject(File file,int sessionId,String fileName) throws Exception {
         // 将文件转换成javabean
-        List<Project> projects = ExcelImport.getProjectsByFile(file,fileName);
-        // 遍历集合，将文件中的项目存入数据库
-        for(int i = 0;i < projects.size();i++){
-            Project project = projects.get(i);
-            project.setSessionId(sessionId);
-            projectMapper.insert(project);
+        ExcelToJavaBean excelToJavaBean = new ExcelToJavaBean();
+        List<Project> projects = excelToJavaBean.importExcelAction(file,sessionId);
+
+        //批量插入，将文件中的项目存入数据库，
+        // projectMapper必须实现InsertListMapper接口
+        for (Project p :
+                projects) {
+            System.out.println(p);
         }
-        return projects;
+        try {
+            projectMapper.insertList(projects);
+        }catch (Exception e){
+
+        }
+
+//        for(int i = 0;i < projects.size();i++){
+//            Project project = projects.get(i);
+//            System.out.println(project);
+//            Integer j =projectMapper.insert(project);
+//
+//            System.out.println(j+"++++++++++++++++++++++++++++++++");
+//        }
+        Project project = new Project();
+        project.setSessionId(sessionId);
+        return (List<Project>) projectMapper.select(project);
     }
 
 /**

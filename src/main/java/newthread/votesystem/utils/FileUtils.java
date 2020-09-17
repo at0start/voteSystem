@@ -10,15 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 public class FileUtils {
-
-//    public static List<Project> getProjectsByFile1(File file) throws IOException, InvalidFormatException {
-//
-//        Init<ExcelPojo> init = new Init<ExcelPojo>(file, ExcelPojo.class, false);
-//        ActionContext<ExcelPojo> act = init.start();
-//        return null;
-//    }
-
-
     /**
      * 获取 excel 文件将其转变成 project 并返回
      *
@@ -64,22 +55,6 @@ public class FileUtils {
         return projects;
     }
 
-//    public static File multipartFileToFile(MultipartFile multipartFile) throws IOException {
-//        //getInputStream() 方法  返回InputStream读取文件的内容
-//        InputStream in = multipartFile.getInputStream();
-//
-//        //getOriginalFilename（）方法是得到原来的文件名在客户机的文件系统名称
-//        String OriginalFilename = multipartFile.getOriginalFilename();
-//        //getName() 方法   返回参数的名称  这里返回的也就是  file
-//        String fileName = multipartFile.getName();
-//        //这里我试了，可以用 fileName   也可以用  OriginalFilename   都没问题的
-//        File file = new File(fileName);
-//        //transferTo() 我主要就是用来把 MultipartFile   转换成  File
-//        multipartFile.transferTo(file);
-//        return file;
-//    }
-
-
     // 随机生成六位不重复的数字
     public static int generate6BitInt() {
         int[] array = {0,1,2,3,4,5,6,7,8,9};
@@ -93,7 +68,6 @@ public class FileUtils {
         int result = 0;
         for(int i = 0; i < 6; i++)
             result = result * 10 + array[i];
-//        System.out.println(result);
         return result;
     }
 
@@ -156,41 +130,4 @@ public class FileUtils {
         }
         return file;
     }
-
-//    /**
-//     * 根据byte数组，生成文件
-//     */
-//    public static File getFile(byte[] bfile, String filePath,String fileName) {
-//        BufferedOutputStream bos = null;
-//        FileOutputStream fos = null;
-//        File file = null;
-//        try {
-//            File dir = new File(filePath);
-//            if(!dir.exists()&&dir.isDirectory()){//判断文件目录是否存在
-//                dir.mkdirs();
-//            }
-//            file = new File(filePath+"\\"+fileName);
-//            fos = new FileOutputStream(file);
-//            bos = new BufferedOutputStream(fos);
-//            bos.write(bfile);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (bos != null) {
-//                try {
-//                    bos.close();
-//                } catch (IOException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//            if (fos != null) {
-//                try {
-//                    fos.close();
-//                } catch (IOException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//        }
-//        return file;
-//    }
 }

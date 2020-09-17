@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="voteSystem:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c46dbe33-a293-41d5-8e47-263c3cd2747b" name="Default" comment="最终项目">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/utils/ExcelToJavaBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/voteSystem_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/voteSystem_war.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/voteSystem_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/voteSystem_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/bean/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/bean/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/LoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller/SessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/entity/Projects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/entity/Projects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/mappers/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/mappers/ProjectMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/utils/ExcelImport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/newthread/votesystem/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/newthread/votesystem/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/voteSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/voteSystem.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1etyIHUHQpOOKBsj4gch3IGXbWl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/newthread/votesystem/controller" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\voteSystem\src\main\java\newthread\votesystem\controller" />
+      <recent name="D:\voteSystem\src\main\java\newthread\votesystem\utils" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.94" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="voteSystem:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/voteSystem" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_voteSystem_7" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="5707" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="voteSystem:war" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c46dbe33-a293-41d5-8e47-263c3cd2747b" name="Default" comment="" />
+      <created>1564207166559</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564207166559</updated>
+      <workItem from="1564207168206" duration="11898000" />
+      <workItem from="1564286513133" duration="10747000" />
+      <workItem from="1564459429829" duration="8042000" />
+      <workItem from="1564545930656" duration="17087000" />
+      <workItem from="1564726680779" duration="527000" />
+      <workItem from="1564727277466" duration="93000" />
+      <workItem from="1564727392056" duration="5315000" />
+      <workItem from="1564812552867" duration="6070000" />
+      <workItem from="1564896021132" duration="6767000" />
+      <workItem from="1564916306470" duration="1759000" />
+      <workItem from="1567218338407" duration="1948000" />
+      <workItem from="1567320983048" duration="14979000" />
+      <workItem from="1567411899254" duration="11525000" />
+      <workItem from="1567498075942" duration="5599000" />
+      <workItem from="1567585175287" duration="8494000" />
+      <workItem from="1567658265799" duration="3924000" />
+      <workItem from="1567679442326" duration="5204000" />
+      <workItem from="1567688291143" duration="1404000" />
+      <workItem from="1567689765839" duration="3766000" />
+      <workItem from="1567745553031" duration="959000" />
+      <workItem from="1567752661906" duration="6187000" />
+      <workItem from="1567766699348" duration="7213000" />
+      <workItem from="1567833348991" duration="294000" />
+      <workItem from="1567833677842" duration="2081000" />
+      <workItem from="1567916250061" duration="20643000" />
+      <workItem from="1568017755100" duration="6208000" />
+      <workItem from="1568030280689" duration="7803000" />
+      <workItem from="1568104004690" duration="16215000" />
+      <workItem from="1568176020072" duration="16782000" />
+      <workItem from="1568257449312" duration="3936000" />
+      <workItem from="1568261578246" duration="5484000" />
+      <workItem from="1568343301950" duration="4407000" />
+      <workItem from="1568370073861" duration="14676000" />
+      <workItem from="1568433768071" duration="25817000" />
+      <workItem from="1568521831491" duration="15930000" />
+      <workItem from="1568622648879" duration="11061000" />
+      <workItem from="1568800521965" duration="2562000" />
+      <workItem from="1568873040573" duration="1732000" />
+      <workItem from="1568901322714" duration="2417000" />
+      <workItem from="1568953619856" duration="24932000" />
+      <workItem from="1569038961823" duration="4881000" />
+      <workItem from="1569071614051" duration="509000" />
+      <workItem from="1569082341817" duration="770000" />
+      <workItem from="1569083157535" duration="300000" />
+      <workItem from="1569124625592" duration="16042000" />
+      <workItem from="1569244896250" duration="2606000" />
+      <workItem from="1569312571991" duration="263000" />
+      <workItem from="1569329968761" duration="3226000" />
+      <workItem from="1569394872135" duration="7457000" />
+      <workItem from="1569480110340" duration="2131000" />
+      <workItem from="1569585800896" duration="44000" />
+      <workItem from="1569646939261" duration="657000" />
+      <workItem from="1570524748510" duration="328000" />
+      <workItem from="1570526728521" duration="602000" />
+      <workItem from="1572261663562" duration="4358000" />
+      <workItem from="1573364597531" duration="1219000" />
+      <workItem from="1574593018160" duration="6103000" />
+      <workItem from="1574773950646" duration="698000" />
+      <workItem from="1574777187086" duration="35000" />
+      <workItem from="1574778328914" duration="475000" />
+      <workItem from="1574779900607" duration="8000" />
+      <workItem from="1574780289451" duration="599000" />
+      <workItem from="1574813275383" duration="1088000" />
+      <workItem from="1575084994305" duration="2061000" />
+      <workItem from="1575094328836" duration="602000" />
+      <workItem from="1575109641269" duration="207000" />
+      <workItem from="1575110945361" duration="2725000" />
+      <workItem from="1575181747638" duration="1736000" />
+      <workItem from="1575184723718" duration="594000" />
+      <workItem from="1575204090276" duration="1630000" />
+      <workItem from="1575879330935" duration="90000" />
+      <workItem from="1576329063170" duration="735000" />
+      <workItem from="1576496694880" duration="21000" />
+      <workItem from="1595155104064" duration="1793000" />
+      <workItem from="1595466985598" duration="7478000" />
+      <workItem from="1599788035438" duration="23455000" />
+      <workItem from="1600147118662" duration="15227000" />
+      <workItem from="1600309073626" duration="1128000" />
+      <workItem from="1600311899574" duration="310000" />
+    </task>
+    <task id="LOCAL-00001" summary="给投票端添加VoteType字段">
+      <created>1564291722168</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564291722168</updated>
+    </task>
+    <task id="LOCAL-00002" summary="添加controller">
+      <created>1564301280941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1564301280941</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改controller">
+      <created>1564546198138</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1564546198138</updated>
+    </task>
+    <task id="LOCAL-00004" summary="重做给前端传session和round">
+      <created>1564916429689</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564916429689</updated>
+    </task>
+    <task id="LOCAL-00005" summary="最终项目">
+      <created>1575204379927</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575204379927</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="给投票端添加VoteType字段" />
+    <MESSAGE value="添加controller" />
+    <MESSAGE value="修改controller" />
+    <MESSAGE value="重做给前端传session和round" />
+    <MESSAGE value="最终项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="最终项目" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599816084966">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599816084966" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1599805303742">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599805303742" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599822319391">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1599822319391" />
+    <state width="1285" height="2" key="GridCell.Tab.0.bottom" timestamp="1600182982443">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1285" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600182982443" />
+    <state width="1285" height="2" key="GridCell.Tab.0.center" timestamp="1600182982443">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1285" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600182982443" />
+    <state width="1285" height="2" key="GridCell.Tab.0.left" timestamp="1600182982443">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1285" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600182982443" />
+    <state width="1285" height="2" key="GridCell.Tab.0.right" timestamp="1600182982443">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1285" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600182982443" />
+    <state width="1388" height="294" key="GridCell.Tab.1.bottom" timestamp="1599813988311">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1388" height="294" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599813988311" />
+    <state width="1388" height="294" key="GridCell.Tab.1.center" timestamp="1599813988311">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1388" height="294" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1599813988311" />
+    <state width="1388" height="294" key="GridCell.Tab.1.left" timestamp="1599813988311">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1388" height="294" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1599813988311" />
+    <state width="1388" height="294" key="GridCell.Tab.1.right" timestamp="1599813988311">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1388" height="294" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599813988311" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1599804669434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1599804669434" />
+    <state x="292" y="14" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599805095892">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="292" y="14" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1599805095892" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/newthread/votesystem/bean/webBean/UserVoteInfo.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

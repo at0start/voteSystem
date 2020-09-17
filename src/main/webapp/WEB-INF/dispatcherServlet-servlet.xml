@@ -36,20 +36,22 @@
     </bean>
 
     <!--配置登录拦截器-->
-    <!--<mvc:interceptors>-->
-    <!--<mvc:interceptor>-->
-        <!--&lt;!&ndash;表示拦截所以路径&ndash;&gt;-->
-        <!--<mvc:mapping path="/**"/>-->
-        <!--&lt;!&ndash;&lt;!&ndash;表示不拦截静态资源&ndash;&gt;&ndash;&gt;-->
-        <!--<mvc:exclude-mapping path="/img/**"/>-->
-        <!--<mvc:exclude-mapping path="/lib/**"/>-->
-        <!--<mvc:exclude-mapping path="/self/**"/>-->
-        <!--<mvc:exclude-mapping path="/view/**"/>-->
-        <!--&lt;!&ndash;拦截器类:不需要拦截的路径&ndash;&gt;-->
-        <!--<mvc:exclude-mapping path="/**/adminLogin"/>-->
-        <!--<mvc:exclude-mapping path="/**/userLogin"/>-->
-        <!--<bean class="newthread.votesystem.controller.LoginInterceptor"/>-->
-    <!--</mvc:interceptor>-->
-<!--</mvc:interceptors>-->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;表示拦截所以路径&ndash;&gt;-->
+<!--            <mvc:mapping path="/*"/>-->
+<!--            &lt;!&ndash;&lt;!&ndash;表示不拦截静态资源&ndash;&gt;&ndash;&gt;-->
+<!--            <mvc:exclude-mapping path="/img/**"/>-->
+<!--            <mvc:exclude-mapping path="/lib/**"/>-->
+<!--            <mvc:exclude-mapping path="/self/**"/>-->
+<!--            <mvc:exclude-mapping path="/view/**"/>-->
+<!--            &lt;!&ndash;拦截器类:不需要拦截的路径&ndash;&gt;-->
+<!--            <mvc:exclude-mapping path="/login"/>-->
+<!--            <mvc:exclude-mapping path="/*Login"/>-->
+<!--            <mvc:exclude-mapping path="/adminLogin"/>-->
+<!--            <mvc:exclude-mapping path="/userLogin"/>-->
+<!--            <bean class="newthread.votesystem.controller.LoginInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 
 </beans>

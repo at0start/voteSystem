@@ -1,5 +1,6 @@
 package newthread.votesystem.controller;
 
+
 import newthread.votesystem.bean.Admin;
 import newthread.votesystem.bean.User;
 import newthread.votesystem.service.AdminService;
@@ -20,14 +21,13 @@ public class IndexController {
 
     @Autowired
     AdminService adminService;
-
     @Autowired
     UserService userService;
-
 
     @RequestMapping(value = "/adminLogin",produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public boolean adminIndex(@RequestBody Admin admin, HttpServletRequest request) {
+        System.out.println(admin);
         if (adminService.queryAdmin(admin)) {
             request.getSession().setAttribute("userName", admin.getAdminId());
             return true;

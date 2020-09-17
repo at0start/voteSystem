@@ -145,6 +145,8 @@ public class SessionController {
             File file1 = fi.getStoreLocation();
             //添加bean对象
             List<Project> list = projectService.uploadProject(file1,sessionId,file.getOriginalFilename());
+            System.out.println(list.size()+"------------------");
+
             if (list.size()!=0)
                 message.setMessage("上传成功");
         }catch (Exception e){
